@@ -1,7 +1,7 @@
 <?php
 
 
-class seo_data_class {
+class seo_metabox_class {
 	
 	var $k=1;
 

@@ -5,7 +5,7 @@
  * @version 1.0
  */
 /*
-    Plugin Name: SEO
+    Plugin Name: Wordpress SEO Plugin
     Plugin URI: http://mervin.info/seo/
     Description: Wordpress SEO by Mervin Praison
     Author: Mervin Praison
