@@ -15,7 +15,7 @@ class seo_data_class {
 	
 	public function zeo_add_post_meta(){
 	
-		return add_post_meta(get_the_ID(), 'testingid', get_the_ID(), true);
+		return add_post_meta(get_the_ID(), 'testingids', get_the_ID(), true);
 			
 	}
 	public function zeo_update_post_meta(){
@@ -30,7 +30,7 @@ class seo_data_class {
 	
 	public function zeo_get_post_meta(){		
 		
-		$meta_values = get_post_meta(get_the_ID(), 'testingid', true);
+		$meta_values = get_post_meta(get_the_ID(), 'testingids', true);
 		return $meta_values;
 	}
 	

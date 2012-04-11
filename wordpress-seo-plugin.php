@@ -33,17 +33,18 @@ require_once ( 'seo-functions.php');
 
 /* shortcode test */
 
-function finalfunc(){
-$post_type = get_post_type( $id );
-$seoclass = new seoclass();
+function shortfunc(){
+	
+$post_type = get_post_type(get_the_ID());
+$seo_data_class = new seo_data_class();
 	if($post_type=='page' || $post_type =='post'){
-		add_action( 'admin_init', $seoclass->zeo_add_post_meta() );
+		add_action( 'admin_init', $seo_data_class->zeo_add_post_meta() );
 	}
 
-$seoclass->zeo_add_post_meta();
-return $seoclass->zeo_get_post_meta();
+$seo_data_class->zeo_add_post_meta();
+return $seo_data_class->zeo_get_post_meta();
 }
 
-add_shortcode( 'bartag', 'finalfunc' );
+add_shortcode( 'bartag', 'shortfunc' );
 
 ?>
