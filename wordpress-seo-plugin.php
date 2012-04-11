@@ -24,11 +24,16 @@ global $post;
 
 require_once ( 'seo-data-class.php');
 require_once ( 'seo-metabox-class.php');
-require_once ( 'seo-functions.php');
+require_once ( 'seo-metafunctions.php');
 
 
 
-
+/*
+$seo_metabox_class = new seo_metabox_class();
+if ( is_admin() ){
+add_action( 'load-post.php', $seo_metabox_class->add_my_meta_box() );
+}
+*/
 
 
 /* shortcode test */
@@ -41,8 +46,11 @@ $seo_data_class = new seo_data_class();
 		add_action( 'admin_init', $seo_data_class->zeo_add_post_meta() );
 	}
 
-$seo_data_class->zeo_add_post_meta();
-return $seo_data_class->zeo_get_post_meta();
+
+$uniqueid = 'zeo_metatitle';
+$mydata='mydata';
+//$seo_data_class->zeo_add_post_meta($uniqueid, $mydata);
+return $seo_data_class->zeo_get_post_meta($uniqueid);
 }
 
 add_shortcode( 'bartag', 'shortfunc' );
