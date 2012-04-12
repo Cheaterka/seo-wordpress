@@ -25,6 +25,7 @@ global $post;
 require_once ( 'seo-data-class.php');
 require_once ( 'seo-metabox-class.php');
 require_once ( 'seo-metafunctions.php');
+require_once ( 'seo-rewritetitle-class.php');
 
 
 
