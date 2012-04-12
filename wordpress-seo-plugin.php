@@ -19,6 +19,7 @@
 define( 'SEO_URL', plugin_dir_url(__FILE__) );
 define( 'SEO_PATH', plugin_dir_path(__FILE__) );
 define( 'SEO_BASENAME', plugin_basename( __FILE__ ) );
+define( 'SEO_ADMIN_DIRECTORY', 'wordpress-seo-plugin/admin');
 
 global $post;
 
@@ -27,7 +28,7 @@ require_once ( 'seo-metabox-class.php');
 require_once ( 'seo-metafunctions.php');
 require_once ( 'seo-rewritetitle-class.php');
 
-
+register_activation_hook(__FILE__, 'zeo_activate');
 
 
 $zeo = new seo_metabox_class();

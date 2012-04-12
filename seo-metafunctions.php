@@ -1,21 +1,47 @@
 <?php
 
 
-/* Define the custom box */
+function zeo_activate() {
+	$default_title =  "| ".get_bloginfo('name');
+	$default_home_title =  get_bloginfo('name');
+	add_option('zeo_common_home_title', $default_title);
+	add_option('zeo_common_page_title', $default_title);
+	add_option('zeo_common_post_title', $default_title);
+	add_option('zeo_common_category_title', $default_title);
+	add_option('zeo_common_archive_title', $default_title);
+	add_option('zeo_common_tag_title', $default_title);
+	add_option('zeo_common_search_title', $default_title);
+	add_option('zeo_common_error_title', $default_title);
+}
 
 
-function zeo_metabox_desc(){
+function zeo_google_analytics(){
 	
+	echo "<script type='text/javascript'>
+
+		  var _gaq = _gaq || [];
+		  _gaq.push(['_setAccount', 'UAE']);
+		  _gaq.push(['_trackPageview']);
+
+		  (function() {
+		    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		  })();
+
+		</script>";
 
 	
 }
+add_action('wp_footer', 'zeo_google_analytics');
 
-function zeo_metabox_keywords(){
+
+function zeo_options_menu(){
 	
-
+	add_options_page('Wordpress SEO Plugin' , 'Wordpress SEO', 9,  SEO_ADMIN_DIRECTORY.'/seo-optionspage.php');	
 	
 }
-
+add_action( 'admin_menu', 'zeo_options_menu' );
 
 
 ?>

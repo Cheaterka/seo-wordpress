@@ -32,19 +32,20 @@ class zeo_rewrite_title {
       }
     } else if (is_search()) {
       $title = trim($_REQUEST[s]);
-    }else if (is_page()) {
-      $title ='test';
     }else if (is_home()) {
       $title = trim(wp_title(false, false));
     }else if (is_front_page()) {
       $title = trim(wp_title(false, false));
+    }else if (is_page()) {
+      $title = trim(wp_title(false, false));
+	  $title .= get_option('zeo_common_page_title');
     }
     
     if ($title) {
       $blogname = get_settings('blogname');
 
       $content = preg_replace("/<title>.*<\/title>/", "<title>$title</title>", $content);
-      $content = preg_replace("/>$blogname</", ">$title - $blogname<", $content);
+      //$content = preg_replace("/>$blogname</", ">$title - $blogname<", $content);
     }
   }
   
