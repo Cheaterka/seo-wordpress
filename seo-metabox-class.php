@@ -13,12 +13,13 @@ add_action( 'load-post.php', 'call_seo_metabox_class' );
 class seo_metabox_class {
 	
 
-
+public $zeo_uniqueid = array ('zeo_title','zeo_description','zeo_keywords'	);
 
 	public function __construct(){	
 		
 		add_action( 'add_meta_boxes', array( &$this, 'add_some_meta_box' ) );
 		add_action( 'save_post', array( &$this, 'myplugin_save_postdata' ));
+		
 		
 	}
 		
@@ -47,15 +48,43 @@ class seo_metabox_class {
 		
 		// Use nonce for verification
 		wp_nonce_field( plugin_basename( __FILE__ ), 'myplugin_noncename' );
-		$uniqueid = 'zeo_metatitle';
 		$seo_data_class = new seo_data_class();
-		$titlevalue = $seo_data_class->zeo_get_post_meta($uniqueid);
+		
+		$i=0;
+		
+		foreach ($this->zeo_uniqueid as $uid){
+			if($i==0)$mytitle=$uid;
+			if($i==1)$mydescription=$uid;
+			if($i==2)$mykeywords=$uid;
+			$i+=1;
+		}
+		
+		$titlevalue = $seo_data_class->zeo_get_post_meta($mytitle);
+		$descriptionvalue = $seo_data_class->zeo_get_post_meta($mydescription);
+		$keywordsvalue = $seo_data_class->zeo_get_post_meta($mykeywords);
+		
 		
         echo '<table>
 		<tr>
-		<td>Title</td>
-		<td><input type="text" name="zeo_metatitle" value="';
+		<td width="40%">Title</td>
+		<td><input type="text" size="80" name="zeo_title" value="';
 		echo $titlevalue;
+		
+		echo '" ></input></td>
+		
+		</tr>
+		<tr>
+		<td>Description</td>
+		<td><input type="textarea" size="80" valign="top" height="100" name="zeo_description" value="';
+		echo $descriptionvalue;
+		
+		echo '" ></input></td>
+		
+		</tr>
+		<tr>
+		<td>Keywords</td>
+		<td><input type="text" size="80" name="zeo_keywords" value="';
+		echo $keywordsvalue;
 		
 		echo '" ></input></td>
 		
@@ -64,6 +93,8 @@ class seo_metabox_class {
 		
 		</table>';
     }
+	
+	
 	
 	public function myplugin_save_postdata( $post_id ) {
 		
@@ -86,28 +117,45 @@ class seo_metabox_class {
 
  	 // OK, we're authenticated: we need to find and save the data
 
- 	$mydata = $_POST['zeo_metatitle'];
-	
-
- 	 	
-		$uniqueid = 'zeo_metatitle';
+ 		foreach ($this->zeo_uniqueid as $uid){			
+		
+		$mytitle = $_POST[$uid];			
+		$uniqueid = $uid;
+		
+		
 		$seo_data_class = new seo_data_class();
 		$checkvalue = $seo_data_class->zeo_get_post_meta($uniqueid);
-		if($mydata!=NULL){
+		
+		
+		if($mytitle!=NULL){
 		if(isset($checkvalue)){
-			$seo_data_class->zeo_update_post_meta($uniqueid, $mydata);
+			$seo_data_class->zeo_update_post_meta($uniqueid, $mytitle);
 		}
 		else{
-			$seo_data_class->zeo_add_post_meta($uniqueid, $mydata);	
+			$seo_data_class->zeo_add_post_meta($uniqueid, $mytitle);	
 			
 		}
 		}
 		else{
-		$seo_data_class->zeo_delete_post_meta($uniqueid, $mydata);	
+		$seo_data_class->zeo_delete_post_meta($uniqueid, $mytitle);	
 		
 		}
 		
+		}
 		
+	}
+	
+	public function zeo_head(){
+	echo "\n<!-- Wordpress SEO Plugin by Mervin Praison --> \n";
+	foreach ($this->zeo_uniqueid as $uid){
+	$seo_data_class = new seo_data_class();
+	$checkvalue = $seo_data_class->zeo_get_post_meta($uid);	
+		if(isset($checkvalue)){
+			if($uid=='zeo_description')echo "<meta name='description' content='".$seo_data_class->zeo_get_post_meta($uid)."'/> ";
+			if($uid=='zeo_keywords')echo "<meta name='keywords' content='".$seo_data_class->zeo_get_post_meta($uid)."'/>";
+		}		
+	}
+	echo "\n<!-- End of Wordpress SEO Plugin by Mervin Praison --> \n";	
 	}
 	
 	
@@ -115,9 +163,31 @@ class seo_metabox_class {
 	
 	/* Substraction Function for testing process */
 	
-	public function sub($a,$b){
+	public function sub(){
 		
-	return $a-$b;	
+		$seo_data_class = new seo_data_class();
+		
+		$i=0;
+		
+		foreach ($this->zeo_uniqueid as $uid){
+			if($i==0)$mytitle=$uid;
+			if($i==1)$mydescription=$uid;
+			if($i==2)$mykeywords=$uid;
+			$i+=1;
+		}
+		
+		$titlevalue = $seo_data_class->zeo_get_post_meta($mytitle);
+		$descriptionvalue = $seo_data_class->zeo_get_post_meta($mydescription);
+		$keywordsvalue = $seo_data_class->zeo_get_post_meta($mykeywords);
+
+		
+		$outputtext  = "";
+		$val=$this->zeo_uniqueid;
+		foreach ($this->zeo_uniqueid as $uid){
+			$outputtext .= $uid." ";
+			
+			}
+	return $mytitle;	
 		
 	}
 	

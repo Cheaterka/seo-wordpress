@@ -28,6 +28,14 @@ require_once ( 'seo-metafunctions.php');
 
 
 
+
+$zeo = new seo_metabox_class();
+
+
+add_action( 'wp_head', array( $zeo, 'zeo_head') );
+
+
+
 /*
 $seo_metabox_class = new seo_metabox_class();
 if ( is_admin() ){
@@ -47,10 +55,12 @@ $seo_data_class = new seo_data_class();
 	}
 
 
+$seo_metabox_class = new seo_metabox_class();
 $uniqueid = 'zeo_metatitle';
 $mydata='mydata';
 //$seo_data_class->zeo_add_post_meta($uniqueid, $mydata);
-return $seo_data_class->zeo_get_post_meta($uniqueid);
+//return $seo_data_class->zeo_get_post_meta($uniqueid);
+return $seo_metabox_class->sub();
 }
 
 add_shortcode( 'bartag', 'shortfunc' );
