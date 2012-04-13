@@ -9,6 +9,9 @@ class zeo_rewrite_title {
 	}
 	public function rewrite(&$content) {
     $title = false;
+	$uid = 'zeo_title';
+	$seo_data_class = new seo_data_class();
+	$individual_title = $seo_data_class->zeo_get_post_meta($uid);
 
     $bloghome = get_settings('home');
     if (substr($bloghome, count($bloghome) - 1, 1) != '/') {
@@ -17,28 +20,56 @@ class zeo_rewrite_title {
     }
 
     if (is_single()) {
+		if($individual_title==NULL)
       $title = trim(wp_title(false, false));
+	  else
+	  $title = $individual_title;
+	  $title .= " ";
+	  $title .= get_option('zeo_common_post_title');
     } else if (is_archive()) {
       global $post, $posts;
 
       if (is_category()) {
-        $title = trim(single_cat_title('', false));
+        $title = trim(single_cat_title('', false)); $title .= " ";
+		$title .= get_option('zeo_common_category_title'); 
       } else if (is_month()) {
-        $title = get_the_time('F, Y');
+        $title = get_the_time('F, Y'); $title .= " ";
+		$title .= get_option('zeo_common_archive_title');
       } else if (is_day()) {
-        $title = get_the_time('F jS, Y');
+        $title = get_the_time('F jS, Y'); $title .= " ";
+		$title .= get_option('zeo_common_archive_title');
       } else if (is_year()) {
-        $title = get_the_time('Y');
+        $title = get_the_time('Y'); $title .= " ";
+		$title .= get_option('zeo_common_archive_title');
       }
     } else if (is_search()) {
-      $title = trim($_REQUEST[s]);
+      $title = trim($_REQUEST[s]); $title .= " ";
+	  $title .= get_option('zeo_common_search_title');
     }else if (is_home()) {
-      $title = trim(wp_title(false, false));
-    }else if (is_front_page()) {
-      $title = trim(wp_title(false, false));
+	  if(is_front_page())	  
+	  $title = get_option('zeo_common_home_title');
+	  else {
+	  $title = trim(wp_title(false, false));$title .= " ";
+	  $title .= get_option('zeo_common_frontpage_title');      
+	  }
+	  if($title==NULL)
+	  $title = trim(wp_title(false, false));
+	  
+	  
+    }else if (is_front_page()) {      	  
+	  $title = get_option('zeo_common_home_title');    
+	  if($title==NULL)
+	  $title = trim(wp_title(false, false));
     }else if (is_page()) {
+      if($individual_title==NULL)
       $title = trim(wp_title(false, false));
+	  else
+	  $title = $individual_title;
+	  $title .= " ";
 	  $title .= get_option('zeo_common_page_title');
+    }else if (is_tag()) {
+      $title = trim(wp_title(false, false)); $title .= " ";
+	  $title .= get_option('zeo_common_tag_title');
     }
     
     if ($title) {

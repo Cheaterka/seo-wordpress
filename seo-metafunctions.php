@@ -3,8 +3,9 @@
 
 function zeo_activate() {
 	$default_title =  "| ".get_bloginfo('name');
-	$default_home_title =  get_bloginfo('name');
-	add_option('zeo_common_home_title', $default_title);
+	$default_home_title =  get_bloginfo('name').get_bloginfo('description');
+	add_option('zeo_common_home_title', $default_home_title);
+	add_option('zeo_common_frontpage_title', $default_title);
 	add_option('zeo_common_page_title', $default_title);
 	add_option('zeo_common_post_title', $default_title);
 	add_option('zeo_common_category_title', $default_title);
@@ -12,6 +13,7 @@ function zeo_activate() {
 	add_option('zeo_common_tag_title', $default_title);
 	add_option('zeo_common_search_title', $default_title);
 	add_option('zeo_common_error_title', $default_title);
+	add_option('zeo_analytics_id', ''); 
 }
 
 
@@ -20,7 +22,7 @@ function zeo_google_analytics(){
 	echo "<script type='text/javascript'>
 
 		  var _gaq = _gaq || [];
-		  _gaq.push(['_setAccount', 'UAE']);
+		  _gaq.push(['_setAccount', '".get_option('zeo_analytics_id')."']);
 		  _gaq.push(['_trackPageview']);
 
 		  (function() {
@@ -33,6 +35,7 @@ function zeo_google_analytics(){
 
 	
 }
+if(get_option('zeo_analytics_id')!=NULL)
 add_action('wp_footer', 'zeo_google_analytics');
 
 
