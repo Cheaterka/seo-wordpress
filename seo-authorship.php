@@ -57,12 +57,8 @@ function seo_authorship_short () {
 $mpgp_author_name = esc_attr( get_the_author_meta( 'zeopreferredname', $user->ID ) );
 $mpgp_author_display = esc_attr( get_the_author_meta( 'display_name', $user->ID ) );
 $mpgp_author_url = esc_attr( get_the_author_meta( 'zeoauthor', $user->ID ) );
-if(is_author){
-$authororme = 12;
-}
-else {
-$authororme = 23;
-}
+if($mpgp_author_url!=NULL){
+
 if($mpgp_author_name==NULL) 
 					{
 						$authorizing = $mpgp_author_display;
@@ -83,6 +79,7 @@ if($mpgp_author_name==NULL)
 				$mpgpreturn .="'>";					
 				$mpgpreturn .= $authorizing;
 				$mpgpreturn .= "</a>";
+}
 
 		return $mpgpreturn;
 } 

@@ -150,14 +150,17 @@ public $zeo_uniqueid = array ('zeo_title','zeo_description','zeo_keywords'	);
 	}
 	
 	public function zeo_head(){
+	$i=1;
 	echo "\n<!-- Wordpress SEO Plugin by Mervin Praison ( http://mervin.info/wordpress-seo-plugin/ ) --> \n";
 	foreach ($this->zeo_uniqueid as $uid){
 	$seo_data_class = new seo_data_class();
 	$checkvalue = $seo_data_class->zeo_get_post_meta($uid);	
+	
 		
-		if (is_front_page()){
-			if($uid=='zeo_description')echo "<meta name='description' content='".get_option('zeo_home_description')."'/> ";
-			if($uid=='zeo_keywords')echo "<meta name='keywords' content='".get_option('zeo_home_keywords')."'/>";
+		if (is_front_page()&& $i==1){
+			if(get_option('zeo_home_description')!=NULL)echo "<meta name='description' content='".get_option('zeo_home_description')."'/> ";
+			if(get_option('zeo_home_keywords')!=NULL)echo "<meta name='keywords' content='".get_option('zeo_home_keywords')."'/>";
+			$i=2;
 		}
 		elseif($checkvalue!=NULL){
 			if($uid=='zeo_description')echo "<meta name='description' content='".$seo_data_class->zeo_get_post_meta($uid)."'/> ";

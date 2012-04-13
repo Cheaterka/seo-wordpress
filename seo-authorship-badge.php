@@ -43,15 +43,11 @@ add_action('wp_head', 'seo_custom_js');
 
 function seo_authorship_badge_short () { 
 
-$mpgp_author_name = esc_attr( get_the_author_meta( 'preferredname', $user->ID ) );
+$mpgp_author_name = esc_attr( get_the_author_meta( 'zeopreferredname', $user->ID ) );
 $mpgp_author_display = esc_attr( get_the_author_meta( 'display_name', $user->ID ) );
-$mpgp_author_url = esc_attr( get_the_author_meta( 'mpgpauthor', $user->ID ) );
-if(is_author){
-$authororme = 12;
-}
-else {
-$authororme = 23;
-}
+$mpgp_author_url = esc_attr( get_the_author_meta( 'zeoauthor', $user->ID ) );
+if($mpgp_author_url!=NULL){
+	
 if($mpgp_author_name==NULL) 
 					{
 						$authorizing = $mpgp_author_display;
@@ -71,11 +67,12 @@ if($mpgp_author_name==NULL)
 				$mpgpreturn .= $authorizing; 
 				$mpgpreturn .="'>";
 				$mpgpreturn .= "</g:plus>";
+}
 
 		return $mpgpreturn;
 } 
 
-add_shortcode( 'seo_authorship_badge', 'seo_authorship_badge_short' );
+add_shortcode( 'seo_google_authorship_badge', 'seo_authorship_badge_short' );
 
 /* End of The Function */
 

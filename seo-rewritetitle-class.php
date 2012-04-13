@@ -7,7 +7,7 @@ class zeo_rewrite_title {
 		
 		
 	}
-	public function rewrite(&$content) {
+	public function zeo_rewrite(&$content) {
     $title = false;
 	$uid = 'zeo_title';
 	$seo_data_class = new seo_data_class();
@@ -80,7 +80,7 @@ class zeo_rewrite_title {
     }
   }
   
-  function wp_footer() {
+  function wpzeo_footer() {
     // Fetch the page (which is only missing some end tags)
     $content = ob_get_contents();
 
@@ -88,13 +88,13 @@ class zeo_rewrite_title {
     ob_end_clean();
 
     // Actually rewrite the page.
-    $this->rewrite($content);
+    $this->zeo_rewrite($content);
 
     // Finally, echo the page so the browser can fetch it.
     echo($content);
   }
   
-  function start() {
+  function starting() {
     ob_start();
   }
 
@@ -107,11 +107,11 @@ class zeo_rewrite_title {
 	$zeo_rewrite_title = new zeo_rewrite_title();
 
 	// We want to act when the page is 99% complete
-	add_action('wp_footer', array(&$zeo_rewrite_title, 'wp_footer'));
+	add_action('wp_footer', array(&$zeo_rewrite_title, 'wpzeo_footer'));
 
 	// There is no action hook for "start of processing",
 	// so we use this implicitly.
-	$zeo_rewrite_title->start();
+	$zeo_rewrite_title->starting();
 
 
 ?>

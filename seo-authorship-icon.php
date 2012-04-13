@@ -31,15 +31,11 @@ function seo_authorship_icon_short () {
 
 
 
-$mpgp_author_name = esc_attr( get_the_author_meta( 'preferredname', $user->ID ) );
+$mpgp_author_name = esc_attr( get_the_author_meta( 'zeopreferredname', $user->ID ) );
 $mpgp_author_display = esc_attr( get_the_author_meta( 'display_name', $user->ID ) );
-$mpgp_author_url = esc_attr( get_the_author_meta( 'mpgpauthor', $user->ID ) );
-if(is_author){
-$authororme = 12;
-}
-else {
-$authororme = 23;
-}
+$mpgp_author_url = esc_attr( get_the_author_meta( 'zeoauthor', $user->ID ) );
+if($mpgp_author_url!=NULL){
+
 if($mpgp_author_name==NULL) 
 					{
 						$authorizing = $mpgp_author_display;
@@ -59,11 +55,12 @@ if($mpgp_author_name==NULL)
 				$mpgpreturn .= $authorizing; 
 				$mpgpreturn .="'><img src='https://ssl.gstatic.com/images/icons/gplus-32.png' alt='' style='border:0;width:32px;height:32px;'/>";
 				$mpgpreturn .= "</a>";
+}
 
 		return $mpgpreturn;
 } 
 
-add_shortcode( 'seo_authorship_icon', 'seo_authorship_icon_short' );
+add_shortcode( 'seo_google_authorship_icon', 'seo_authorship_icon_short' );
 
 /* End of The Function */
 

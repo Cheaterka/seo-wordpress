@@ -179,7 +179,7 @@ global $current_user;
 
 
 		<tr>
-			<th align="left" style="font-weight:normal"><label for="mpgpauthor">Google Plus Profile URL</label></th>
+			<th align="left" style="font-weight:normal"><label for="mpgpauthor">Google Plus Profile URL (Required)</label></th>
 
 			<td>
 				<input type="text" name="zeoauthor" id="mpgpauthor" value="<?php echo esc_attr( get_the_author_meta( 'zeoauthor', $current_user->ID ) ); ?>" class="regular-text" />
