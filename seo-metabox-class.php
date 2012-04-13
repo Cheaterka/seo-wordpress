@@ -154,10 +154,16 @@ public $zeo_uniqueid = array ('zeo_title','zeo_description','zeo_keywords'	);
 	foreach ($this->zeo_uniqueid as $uid){
 	$seo_data_class = new seo_data_class();
 	$checkvalue = $seo_data_class->zeo_get_post_meta($uid);	
-		if($checkvalue!=NULL){
+		
+		if (is_front_page()){
+			if($uid=='zeo_description')echo "<meta name='description' content='".get_option('zeo_home_description')."'/> ";
+			if($uid=='zeo_keywords')echo "<meta name='keywords' content='".get_option('zeo_home_keywords')."'/>";
+		}
+		elseif($checkvalue!=NULL){
 			if($uid=='zeo_description')echo "<meta name='description' content='".$seo_data_class->zeo_get_post_meta($uid)."'/> ";
 			if($uid=='zeo_keywords')echo "<meta name='keywords' content='".$seo_data_class->zeo_get_post_meta($uid)."'/>";
-		}		
+		}
+				
 	}
 	echo "\n<!-- End of Wordpress SEO Plugin by Mervin Praison --> \n";	
 	}

@@ -6,7 +6,9 @@
 
 function zeooptions_update(){
 	
-	update_option('zeo_common_home_title', $_POST['zeo_common_home_title']); 
+	update_option('zeo_common_home_title', $_POST['zeo_common_home_title']);
+	update_option('zeo_home_description', $_POST['zeo_home_description']);
+	update_option('zeo_home_keywords', $_POST['zeo_home_keywords']); 
 	update_option('zeo_common_frontpage_title', $_POST['zeo_common_frontpage_title']); 
 	update_option('zeo_common_page_title', $_POST['zeo_common_page_title']); 
 	update_option('zeo_common_post_title', $_POST['zeo_common_post_title']); 
@@ -30,15 +32,31 @@ function zeooptions_update(){
 <form method="POST" action="">  
             <input type="hidden" name="update_zeooptions" value="true" />  
             <table cellpadding="2">
-	            <tr style="background-color:#CCC;"><td>
+	            <h3>Home Page Settings</h3>
+                <tr style="background-color:#CCC;">
+        		<td width="210"><b>Home Page</b></td>
+        		<td><b>Settings</b></td>
+        		</tr>
+                <tr><td>
+				Home Page Title: 
+				</td><td>
+            	<input size="50" type="text" value="<?php echo get_option('zeo_common_home_title'); ?>" name="zeo_common_home_title"  />  
+            	</td></tr>
+                <tr><td>
+				Home Page  Meta Description:
+				</td><td>
+            	<textarea size="50" rows="3" cols="52" name="zeo_home_description" ><?php echo get_option('zeo_home_description'); ?></textarea>  
+            	</td></tr>
+                <tr><td>
+				Home Page  Meta Keywords:
+				</td><td>
+            	<input size="50" type="text" value="<?php echo get_option('zeo_home_keywords'); ?>" name="zeo_home_keywords"  />  
+            	</td></tr></table><table>
+                <h3>Other Page Title Settings</h3>
+                <tr style="background-color:#CCC;"><td>
 				<b>Titles</b> </td><td><b>Title Prefix</b>
 				</td><td>
             	<b>Title Suffix</b>
-            	</td></tr>
-                <tr><td>
-				Home Page Title: </td><td>
-				</td><td>
-            	<input size="50" type="text" value="<?php echo get_option('zeo_common_home_title'); ?>" name="zeo_common_home_title"  />  
             	</td></tr>
                 <tr><td>
 				Blog Page Title: </td><td> Blog Page Title
@@ -81,6 +99,7 @@ function zeooptions_update(){
 				</td><td>
             	<input size="50" type="text" value="<?php echo get_option('zeo_common_error_title'); ?>" name="zeo_common_error_title"  />  
             	</td></tr>
+                
 
                 
                 
