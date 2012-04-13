@@ -6,13 +6,13 @@
  */
 /*
     Plugin Name: Wordpress SEO Plugin
-    Plugin URI: http://mervin.info/seo/
-    Description: Wordpress SEO by Mervin Praison
+    Plugin URI: http://mervin.info/wordpress-seo-plugin/
+    Description: Wordpress SEO Plugin by Mervin Praison
     Author: Mervin Praison
     Version: 1.0
     License: GPL
     Author URI: http://mervin.info/
-    Last change: 11.04.2012
+    Last change: 13.04.2012
 */
 
 
@@ -27,6 +27,10 @@ require_once ( 'seo-data-class.php');
 require_once ( 'seo-metabox-class.php');
 require_once ( 'seo-metafunctions.php');
 require_once ( 'seo-rewritetitle-class.php');
+require_once ( 'seo-authorship.php');
+require_once ( 'seo-authorship-badge.php');
+require_once ( 'seo-authorship-icon.php');
+// include (SEO_URL.'/wordpress-seo-plugin/authorship/seo-authorship.php');
 
 register_activation_hook(__FILE__, 'zeo_activate');
 
@@ -38,33 +42,5 @@ add_action( 'wp_head', array( $zeo, 'zeo_head') );
 
 
 
-/*
-$seo_metabox_class = new seo_metabox_class();
-if ( is_admin() ){
-add_action( 'load-post.php', $seo_metabox_class->add_my_meta_box() );
-}
-*/
-
-
-/* shortcode test */
-
-function shortfunc(){
-	
-$post_type = get_post_type(get_the_ID());
-$seo_data_class = new seo_data_class();
-	if($post_type=='page' || $post_type =='post'){
-		add_action( 'admin_init', $seo_data_class->zeo_add_post_meta() );
-	}
-
-
-$seo_metabox_class = new seo_metabox_class();
-$uniqueid = 'zeo_metatitle';
-$mydata='mydata';
-//$seo_data_class->zeo_add_post_meta($uniqueid, $mydata);
-//return $seo_data_class->zeo_get_post_meta($uniqueid);
-return $seo_metabox_class->sub();
-}
-
-add_shortcode( 'bartag', 'shortfunc' );
 
 ?>

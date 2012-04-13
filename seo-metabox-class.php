@@ -166,41 +166,7 @@ public $zeo_uniqueid = array ('zeo_title','zeo_description','zeo_keywords'	);
 				
 	}
 	echo "\n<!-- End of Wordpress SEO Plugin by Mervin Praison --> \n";	
-	}
-	
-	
-	
-	
-	/* Substraction Function for testing process */
-	
-	public function sub(){
-		
-		$seo_data_class = new seo_data_class();
-		
-		$i=0;
-		
-		foreach ($this->zeo_uniqueid as $uid){
-			if($i==0)$mytitle=$uid;
-			if($i==1)$mydescription=$uid;
-			if($i==2)$mykeywords=$uid;
-			$i+=1;
-		}
-		
-		$titlevalue = $seo_data_class->zeo_get_post_meta($mytitle);
-		$descriptionvalue = $seo_data_class->zeo_get_post_meta($mydescription);
-		$keywordsvalue = $seo_data_class->zeo_get_post_meta($mykeywords);
-
-		
-		$outputtext  = "";
-		$val=$this->zeo_uniqueid;
-		foreach ($this->zeo_uniqueid as $uid){
-			$outputtext .= $uid." ";
-			
-			}
-	return $mytitle;	
-		
-	}
-	
+	}	
 
 	
 	

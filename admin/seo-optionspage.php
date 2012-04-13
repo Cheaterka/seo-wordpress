@@ -2,6 +2,7 @@
 
 <div class="wrap">
 <h1>Wordpress SEO Plugin Settings</h1>
+<br />
 <?php if ( $_POST['update_zeooptions'] == 'true' ) { zeooptions_update(); }  
 
 function zeooptions_update(){
@@ -27,8 +28,40 @@ function zeooptions_update(){
 	
 }
 ?>
+<?php if ( $_POST['update_authorshipoptions'] == 'true' ) { authorshipoptions_update(); }  
 
-<br />
+function authorshipoptions_update(){
+	global $current_user;
+	if ( !current_user_can( 'edit_user', $current_user->ID ) )
+		return false;
+
+	update_usermeta( $current_user->ID, 'zeoauthor', $_POST['zeoauthor'] );
+	update_usermeta( $current_user->ID, 'zeopreferredname', $_POST['zeopreferredname'] );
+	
+	echo '<div class="updated">
+		<p>
+			<strong>Options saved</strong>
+		</p>
+	</div>'; 
+	
+}
+?>
+  <?php if ( $_POST['update_analyticsoptions'] == 'true' ) { analyticsoptions_update(); }  
+
+function analyticsoptions_update(){
+	
+	
+	update_option('zeo_analytics_id', $_POST['zeo_analytics_id']); 
+	
+	echo '<div class="updated">
+		<p>
+			<strong>Options saved</strong>
+		</p>
+	</div>'; 
+	
+}
+?> 
+
 <form method="POST" action="">  
             <input type="hidden" name="update_zeooptions" value="true" />  
             <table cellpadding="2">
@@ -108,21 +141,7 @@ function zeooptions_update(){
             <p><input type="submit" name="search" value="Update Options" class="button" /></p>  
         </form> 
         
-  <?php if ( $_POST['update_analyticsoptions'] == 'true' ) { analyticsoptions_update(); }  
-
-function analyticsoptions_update(){
-	
-	
-	update_option('zeo_analytics_id', $_POST['zeo_analytics_id']); 
-	
-	echo '<div class="updated">
-		<p>
-			<strong>Options saved</strong>
-		</p>
-	</div>'; 
-	
-}
-?>      
+     
         <br />
         <h1>Google Analytics Settings</h1>
         <form method="POST" action="">  
@@ -141,15 +160,48 @@ function analyticsoptions_update(){
         </table>
             <p><input type="submit" name="search" value="Update Options" class="button" /></p>  
         </form> 
+
+
 <br />
+
 <h1>Google Authorship Settings</h1>
+<form method="POST" action="">  
+        <input type="hidden" name="update_authorshipoptions" value="true" />
 <table cellpadding="2">
         <tr style="background-color:#CCC;"><td width="230"><b>Function</b></td><td width="300"><b>Setup</b></td></tr>
-		<tr>
-        <td>Authorship Setup Location</td>
-        <td>Users -> Your Profile -> (Bottom)</td>
-        </tr>
-</table>
+		
 
+<?php
+global $current_user;
+	get_currentuserinfo();
+    ?>
+    
+
+
+		<tr>
+			<th align="left" style="font-weight:normal"><label for="mpgpauthor">Google Plus Profile URL</label></th>
+
+			<td>
+				<input type="text" name="zeoauthor" id="mpgpauthor" value="<?php echo esc_attr( get_the_author_meta( 'zeoauthor', $current_user->ID ) ); ?>" class="regular-text" />
+                <!--<br />
+				<span class="description">Please enter your Google Plus Profile URL. (with "https://plus.google.com/1234567890987654321")</span>
+                -->
+			</td>
+		</tr>
+		<tr>
+
+			<th align="left" style="font-weight:normal"><label for="preferredname">Preferred Name</label></th>
+			<td>
+				<input type="text" name="zeopreferredname" id="preferredname" value="<?php echo esc_attr( get_the_author_meta( 'zeopreferredname', $current_user->ID ) ); ?>" class="regular-text" />
+                <!--
+                <br />
+				<span class="description">Enter Your Preferred Name</span>
+                -->
+			</td>
+		</tr>
+
+	</table>
+     <p><input type="submit" name="search" value="Update Options" class="button" /></p>  
+</form>
 
 </div>
