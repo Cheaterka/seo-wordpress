@@ -151,7 +151,7 @@ public $zeo_uniqueid = array ('zeo_title','zeo_description','zeo_keywords'	);
 	
 	public function zeo_head(){
 	$i=1;
-	echo "\n<!-- Wordpress SEO Plugin by Mervin Praison ( http://mervin.info/wordpress-seo-plugin/ ) --> \n";
+	echo "\n<!-- Wordpress SEO Plugin by Mervin Praison ( http://mervin.info/seo-wordpress/ ) --> \n";
 	foreach ($this->zeo_uniqueid as $uid){
 	$seo_data_class = new seo_data_class();
 	$checkvalue = $seo_data_class->zeo_get_post_meta($uid);	

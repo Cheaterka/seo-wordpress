@@ -37,8 +37,8 @@ if ( function_exists('add_action') ) {
 
 /* Initializing */
 
-include( WP_PLUGIN_DIR . '/wordpress-seo-plugin/seo-authorship-badge.php');
-include( WP_PLUGIN_DIR . '/wordpress-seo-plugin/seo-authorship-icon.php');
+include( WP_PLUGIN_DIR . '/seo-wordpress/seo-authorship-badge.php');
+include( WP_PLUGIN_DIR . '/seo-wordpress/seo-authorship-icon.php');
 
 /*  End of Initializing  */
 

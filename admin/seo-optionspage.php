@@ -1,5 +1,3 @@
-
-
 <div class="wrap">
 <h1>Wordpress SEO Plugin Settings</h1>
 <br />
@@ -61,7 +59,18 @@ function analyticsoptions_update(){
 	
 }
 ?> 
-
+<h3>If you thought of Encouraging me to develop more Plugins for FREE,<br />
+Please LIKE ME and ADD ME to your circles</h3>
+<table>
+<tr>
+<td>
+<iframe src="//www.facebook.com/plugins/likebox.php?href=http%3A%2F%2Fwww.facebook.com%2Fmervinpraisons&amp;width=250&amp;height=62&amp;colorscheme=light&amp;show_faces=false&amp;border_color&amp;stream=false&amp;header=true&amp;appId=252850214734670" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:250px; height:62px;" allowTransparency="true"></iframe>
+</td>
+<td>
+<div class="g-plus" data-href="https://plus.google.com/101518602031253199279?rel=publisher" data-width="170" data-height="69" data-theme="light"></div>
+</td>
+</tr>
+</table>
 <form method="POST" action="">  
             <input type="hidden" name="update_zeooptions" value="true" />  
             <table cellpadding="2">
