@@ -5,15 +5,13 @@
 
 function ischecked($chkname,$value)
     {
-        if(!empty($_POST[$chkname]))
-        {            
-                if($_POST[$chkname] == $value)
+                  
+                if(get_option($chkname) == $value)
                 {
                     return true;
-                }            
-        }
-        return false;
-}
+                } 
+        		return false;
+	}
 
 
 
