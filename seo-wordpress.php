@@ -41,6 +41,4 @@ $zeo = new seo_metabox_class();
 add_action( 'wp_head', array( $zeo, 'zeo_head') );
 
 
-
-
 ?>

@@ -3,7 +3,7 @@
 <br />
 <?php 
 
-function ischecked($chkname,$value)
+function zeo_ischecked($chkname,$value)
     {
                   
                 if(get_option($chkname) == $value)
@@ -12,7 +12,6 @@ function ischecked($chkname,$value)
                 } 
         	return false;
 	}
-
 
 if ( $_POST['update_zeooptions'] == 'true' ) { zeooptions_update(); }  
 
@@ -30,7 +29,8 @@ function zeooptions_update(){
 	update_option('zeo_common_search_title', $_POST['zeo_common_search_title']); 
 	update_option('zeo_common_error_title', $_POST['zeo_common_error_title']);
 	update_option('zeo_canonical_url', $_POST['zeo_canonical_url']);
-	
+	update_option('zeo_nofollow', $_POST['zeo_nofollow']);
+	update_option('zeo_activate_title', $_POST['zeo_activate_title']);	
 	
 	echo '<div class="updated">
 		<p>
@@ -39,6 +39,7 @@ function zeooptions_update(){
 	</div>'; 
 	
 }
+
 ?>
 <?php if ( $_POST['update_authorshipoptions'] == 'true' ) { authorshipoptions_update(); }  
 
@@ -162,13 +163,20 @@ Please LIKE ME and ADD ME to your circles</h3>
         		<td width="312"><b>Setup</b></td>
         		</tr>
                 <tr><td>
+				Activate Other Page title settings: 
+				</td><td>
+            	<input type="checkbox" name="zeo_activate_title" value="yes" <?php if(zeo_ischecked('zeo_activate_title', 'yes' )){echo "checked";}?>>  </input>
+            	</td></tr>
+                <tr><td>
 				Canonical Link: 
 				</td><td>
-            	<input type="checkbox" name="zeo_canonical_url" value="yes" <?php if(ischecked('zeo_canonical_url', 'yes' )){echo "checked";}?>>  </input>
-            	</td></tr>              
-                
-
-                
+            	<input type="checkbox" name="zeo_canonical_url" value="yes" <?php if(zeo_ischecked('zeo_canonical_url', 'yes' )){echo "checked";}?>>  </input>
+            	</td></tr>
+                <tr><td>
+				rel = NoFollow for Outbound Links: 
+				</td><td>
+            	<input type="checkbox" name="zeo_nofollow" value="yes" <?php if(zeo_ischecked('zeo_nofollow', 'yes' )){echo "checked";}?>>  </input>
+            	</td></tr>
                 
                 
 			</table>

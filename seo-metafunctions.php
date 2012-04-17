@@ -17,6 +17,9 @@ function zeo_activate() {
 	add_option('zeo_home_description', ''); 
 	add_option('zeo_home_keywords', '');
 	add_option('zeo_canonical_url', 'yes');
+	add_option('zeo_nofollow', 'yes');
+	add_option('zeo_activate_title', 'yes');	
+	
 }
 
 
@@ -40,6 +43,30 @@ function zeo_google_analytics(){
 }
 if(get_option('zeo_analytics_id')!=NULL)
 add_action('wp_footer', 'zeo_google_analytics');
+/* Rel No Follow */
+
+if(zeo_ischeckeds('zeo_nofollow', 'yes' )){zeo_process_post();}
+function zeo_process_post(){
+add_filter( 'the_content', 'zeo_relnofollow' );
+}
+
+function zeo_relnofollow($content){
+	return str_replace('<a href=', '<a rel="nofollow" href=',  $content);
+}
+
+/* General Function */
+
+function zeo_ischeckeds($chkname,$value)
+    {
+                  
+                if(get_option($chkname) == $value)
+                {
+                    return true;
+                } 
+        	return false;
+	}
+
+/* Admin Menu */
 
 add_action( 'admin_menu', 'zeo_options_menu' );
 function zeo_options_menu(){
