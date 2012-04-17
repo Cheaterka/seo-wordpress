@@ -14,7 +14,6 @@ function ischecked($chkname,$value)
 	}
 
 
-
 if ( $_POST['update_zeooptions'] == 'true' ) { zeooptions_update(); }  
 
 function zeooptions_update(){
