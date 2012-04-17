@@ -22,7 +22,7 @@ define( 'SEO_BASENAME', plugin_basename( __FILE__ ) );
 define( 'SEO_ADMIN_DIRECTORY', 'seo-wordpress/admin');
 
 global $post;
-
+require_once ( 'seo-global-functions.php');
 require_once ( 'seo-data-class.php');
 require_once ( 'seo-metabox-class.php');
 require_once ( 'seo-metafunctions.php');
