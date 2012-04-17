@@ -15,7 +15,8 @@ function zeo_activate() {
 	add_option('zeo_common_error_title', $default_title);
 	add_option('zeo_analytics_id', ''); 
 	add_option('zeo_home_description', ''); 
-	add_option('zeo_home_keywords', ''); 
+	add_option('zeo_home_keywords', '');
+	add_option('zeo_canonical_url', 'yes');
 }
 
 

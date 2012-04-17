@@ -1,7 +1,23 @@
 <div class="wrap">
 <h1>Wordpress SEO Plugin Settings</h1>
 <br />
-<?php if ( $_POST['update_zeooptions'] == 'true' ) { zeooptions_update(); }  
+<?php 
+
+function ischecked($chkname,$value)
+    {
+        if(!empty($_POST[$chkname]))
+        {            
+                if($_POST[$chkname] == $value)
+                {
+                    return true;
+                }            
+        }
+        return false;
+}
+
+
+
+if ( $_POST['update_zeooptions'] == 'true' ) { zeooptions_update(); }  
 
 function zeooptions_update(){
 	
@@ -15,7 +31,8 @@ function zeooptions_update(){
 	update_option('zeo_common_archive_title', $_POST['zeo_common_archive_title']); 
 	update_option('zeo_common_tag_title', $_POST['zeo_common_tag_title']); 
 	update_option('zeo_common_search_title', $_POST['zeo_common_search_title']); 
-	update_option('zeo_common_error_title', $_POST['zeo_common_error_title']); 
+	update_option('zeo_common_error_title', $_POST['zeo_common_error_title']);
+	update_option('zeo_canonical_url', $_POST['zeo_canonical_url']);
 	
 	
 	echo '<div class="updated">
@@ -141,6 +158,17 @@ Please LIKE ME and ADD ME to your circles</h3>
 				</td><td>
             	<input size="50" type="text" value="<?php echo get_option('zeo_common_error_title'); ?>" name="zeo_common_error_title"  />  
             	</td></tr>
+                <table cellpadding="2">
+                <h3>General Settings</h3>
+                <tr style="background-color:#CCC;">
+        		<td width="212"><b>Functions</b></td>
+        		<td width="312"><b>Setup</b></td>
+        		</tr>
+                <tr><td>
+				Canonical Link: 
+				</td><td>
+            	<input type="checkbox" name="zeo_canonical_url" value="yes" <?php if(ischecked('zeo_canonical_url', 'yes' )){echo "checked";}?>>  </input>
+            	</td></tr>              
                 
 
                 
@@ -157,12 +185,12 @@ Please LIKE ME and ADD ME to your circles</h3>
         <input type="hidden" name="update_analyticsoptions" value="true" />
         <table cellpadding="2">
         <tr style="background-color:#CCC;">
-        <td width="230"><b>Analytics</b></td>
-        <td><b>ID</b></td>
+        <td width="210"><b>Analytics</b></td>
+        <td width="310"><b>ID</b></td>
         </tr>
         <tr>
         <td>Please Enter your Tracking ID</td>
-        <td><input size="48" type="text" value="<?php echo get_option('zeo_analytics_id'); ?>" name="zeo_analytics_id"  /></td>
+        <td><input size="51" type="text" value="<?php echo get_option('zeo_analytics_id'); ?>" name="zeo_analytics_id"  /></td>
         </tr>
         
         
@@ -177,7 +205,7 @@ Please LIKE ME and ADD ME to your circles</h3>
 <form method="POST" action="">  
         <input type="hidden" name="update_authorshipoptions" value="true" />
 <table cellpadding="2">
-        <tr style="background-color:#CCC;"><td width="230"><b>Function</b></td><td width="300"><b>Setup</b></td></tr>
+        <tr style="background-color:#CCC;"><td width="212"><b>Function</b></td><td width="310"><b>Setup</b></td></tr>
 		
 
 <?php
@@ -191,7 +219,7 @@ global $current_user;
 			<th align="left" style="font-weight:normal"><label for="mpgpauthor">Google Plus Profile URL (Required)</label></th>
 
 			<td>
-				<input type="text" name="zeoauthor" id="mpgpauthor" value="<?php echo esc_attr( get_the_author_meta( 'zeoauthor', $current_user->ID ) ); ?>" class="regular-text" />
+				<input size="54" type="text" name="zeoauthor" id="mpgpauthor" value="<?php echo esc_attr( get_the_author_meta( 'zeoauthor', $current_user->ID ) ); ?>" class="regular-text" />
                 <!--<br />
 				<span class="description">Please enter your Google Plus Profile URL. (with "https://plus.google.com/1234567890987654321")</span>
                 -->
@@ -201,7 +229,7 @@ global $current_user;
 
 			<th align="left" style="font-weight:normal"><label for="preferredname">Preferred Name</label></th>
 			<td>
-				<input type="text" name="zeopreferredname" id="preferredname" value="<?php echo esc_attr( get_the_author_meta( 'zeopreferredname', $current_user->ID ) ); ?>" class="regular-text" />
+				<input size="54" type="text" name="zeopreferredname" id="preferredname" value="<?php echo esc_attr( get_the_author_meta( 'zeopreferredname', $current_user->ID ) ); ?>" class="regular-text" />
                 <!--
                 <br />
 				<span class="description">Enter Your Preferred Name</span>

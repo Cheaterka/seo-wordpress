@@ -165,9 +165,11 @@ public $zeo_uniqueid = array ('zeo_title','zeo_description','zeo_keywords'	);
 		elseif($checkvalue!=NULL){
 			if($uid=='zeo_description')echo "<meta name='description' content='".$seo_data_class->zeo_get_post_meta($uid)."'/> ";
 			if($uid=='zeo_keywords')echo "<meta name='keywords' content='".$seo_data_class->zeo_get_post_meta($uid)."'/>";
+			
 		}
 				
 	}
+	if(get_option('zeo_canonical_url')!=NULL && get_option('zeo_canonical_url')=='yes')echo "<link rel='canonical' href='".get_permalink()."' />";
 	echo "\n<!-- End of Wordpress SEO Plugin by Mervin Praison --> \n";	
 	}	
 
