@@ -66,27 +66,6 @@ function zeo_ischeckeds($chkname,$value)
         	return false;
 	}
 
-/* Admin Menu */
-
-add_action( 'admin_menu', 'zeo_options_menu' );
-function zeo_options_menu(){
-	
-	add_options_page('Wordpress SEO Plugin' , 'Wordpress SEO', 9,  SEO_ADMIN_DIRECTORY.'/seo-optionspage.php');
-	
-}
-add_action( 'admin_head', 'zeo_admin_header' );
-
-function zeo_admin_header(){
-  echo '<script type="text/javascript">
-window.___gcfg = {lang: "en"};
-(function() 
-{var po = document.createElement("script");
-po.type = "text/javascript"; po.async = true;po.src = "https://apis.google.com/js/plusone.js";
-var s = document.getElementsByTagName("script")[0];
-s.parentNode.insertBefore(po, s);
-})();</script>';
-}
-
 
 
 ?>
