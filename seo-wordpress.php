@@ -30,7 +30,7 @@ require_once ( 'seo-rewritetitle-class.php');
 require_once ( 'seo-authorship.php');
 require_once ( 'seo-authorship-badge.php');
 require_once ( 'seo-authorship-icon.php');
-// require_once ( 'seo-xml-sitemap.php');
+require_once ( 'seo-xml-sitemap.php');
 // include (SEO_URL.'/seo-wordpress/authorship/seo-authorship.php');
 
 register_activation_hook(__FILE__, 'zeo_activate');
