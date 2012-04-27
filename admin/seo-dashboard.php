@@ -41,28 +41,31 @@ function zeooptions_update(){
 }
 
 ?>
- 
-<h3>Want more FREE Plugins? Encourage me by,<br />
-LIKING ME and ADDING ME to your circles</h3>
+<div class="postbox-container" style="width:70%;">
+				<div class="metabox-holder">	
+					<div class="meta-box-sortables ui-sortable">
+                    <div class="postbox" id="support">
+<strong><h3>Want more FREE Plugins? Encourage me by,
+LIKING ME and ADDING ME to your circles</h3></strong>
 <table>
 <tr>
 <td>
 <iframe src="//www.facebook.com/plugins/likebox.php?href=http%3A%2F%2Fwww.facebook.com%2Fmervinpraisons&amp;width=250&amp;height=62&amp;colorscheme=light&amp;show_faces=false&amp;border_color&amp;stream=false&amp;header=true&amp;appId=252850214734670" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:250px; height:62px;" allowTransparency="true"></iframe>
 </td>
-<td>
-<div class="g-plus" data-href="https://plus.google.com/101518602031253199279?rel=publisher" data-width="170" data-height="69" data-theme="light"></div>
+<td style="padding-top:10px;" >
+<div class="g-plus" data-href="https://plus.google.com/101518602031253199279?rel=publisher" data-width="170" data-height="70" data-theme="light"></div>
 </td>
 </tr>
 </table>
+</div>
+
+                    <div class="postbox" id="support">
 <form method="POST" action="">  
             <input type="hidden" name="update_zeooptions" value="true" />  
-            <table cellpadding="2">
+            <table cellpadding="6">
 	            <h3>Home Page Settings</h3>
-                <tr style="background-color:#CCC;">
-        		<td width="210"><b>Home Page</b></td>
-        		<td><b>Settings</b></td>
-        		</tr>
-                <tr><td>
+                
+                <tr><td width="210">
 				Home Page Title: 
 				</td><td>
             	<input size="50" type="text" value="<?php echo get_option('zeo_common_home_title'); ?>" name="zeo_common_home_title"  />  
@@ -76,7 +79,14 @@ LIKING ME and ADDING ME to your circles</h3>
 				Home Page  Meta Keywords:
 				</td><td>
             	<input size="50" type="text" value="<?php echo get_option('zeo_home_keywords'); ?>" name="zeo_home_keywords"  />  
-            	</td></tr></table><table>
+            	</td></tr></table>
+                
+                </div>
+                
+                    <div class="postbox" id="support">
+                
+                
+                <table>
                 <h3>Other Page Title Settings</h3>
                 <tr style="background-color:#CCC;"><td>
 				<b>Titles</b> </td><td><b>Title Prefix</b>
@@ -124,6 +134,8 @@ LIKING ME and ADDING ME to your circles</h3>
 				</td><td>
             	<input size="50" type="text" value="<?php echo get_option('zeo_common_error_title'); ?>" name="zeo_common_error_title"  />  
             	</td></tr>
+                </div>
+                
                 <table cellpadding="2">
                 <h3>General Settings</h3>
                 <tr style="background-color:#CCC;">
@@ -151,6 +163,6 @@ LIKING ME and ADDING ME to your circles</h3>
             <p><input type="submit" name="search" value="Update Options" class="button" /></p>  
         </form>        
      
-       
-
+       </div></div></div>
+</div></div></div>
 </div>
