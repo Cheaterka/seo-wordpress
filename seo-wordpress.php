@@ -2,17 +2,17 @@
 /**
  * @package SEO Wordpress
  * @author Mervin Praison
- * @version 1.0
+ * @version 2.0
  */
 /*
     Plugin Name: SEO Wordpress
     Plugin URI: http://mervin.info/seo-wordpress/
     Description: SEO Wordpress Plugin by Mervin Praison is a Powerfull Best Optimisation Plugin which has many SEO Features. Google Authorship and Google Analytics Integration. Very Easy to Setup. Check all benefits here http://mervin.info/seo-wordpress/
     Author: Mervin Praison
-    Version: 1.0
+    Version: 2.0
     License: GPL
     Author URI: http://mervin.info/
-    Last change: 13.04.2012
+    Last change: 30.04.2012
 */
 
 
