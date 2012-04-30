@@ -1,6 +1,5 @@
 <div class="wrap">
 <h1>Google Authorship And Analytics Settings</h1>
-<br />
 <?php 
 
 function zeo_ischecked($chkname,$value)
@@ -49,25 +48,40 @@ function analyticsoptions_update(){
 	
 }
 ?> 
-<!--
-<h3>Want more Plugins? Encourage me by,<br />
-LIKING ME and ADDING ME to your circles</h3>
--->
+
+<div class="postbox-container" style="width:70%;">
+				<div class="metabox-holder">	
+					<div class="meta-box-sortables ui-sortable">
+                    <div class="postbox" id="support">
+<strong><h3>Want more FREE Plugins? Encourage me by,
+LIKING ME and ADDING ME to your circles</h3></strong>
 <table>
 <tr>
 <td>
 <iframe src="//www.facebook.com/plugins/likebox.php?href=http%3A%2F%2Fwww.facebook.com%2Fmervinpraisons&amp;width=250&amp;height=62&amp;colorscheme=light&amp;show_faces=false&amp;border_color&amp;stream=false&amp;header=true&amp;appId=252850214734670" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:250px; height:62px;" allowTransparency="true"></iframe>
 </td>
-<td>
-<div class="g-plus" data-href="https://plus.google.com/101518602031253199279?rel=publisher" data-width="170" data-height="69" data-theme="light"></div>
+<td style="padding-top:10px;" >
+<div class="g-plus" data-href="https://plus.google.com/101518602031253199279?rel=publisher" data-width="170" data-height="70" data-theme="light"></div>
+</td>
+<td style="padding-top:10px;" >
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a name="fb_share" type="icon_link" 
+   share_url="http://mervin.info/seo-wordpress" style="font-weight:bold; font-size:15px;">Share me Please</a> 
+<script src="http://static.ak.fbcdn.net/connect.php/js/FB.Share" 
+        type="text/javascript">
+</script>
 </td>
 </tr>
 </table>
-<h1>Google Authorship Settings</h1>
+</div>
+
+
+
 <form method="POST" action="">  
         <input type="hidden" name="update_authorshipoptions" value="true" />
-<table cellpadding="2">
-        <tr style="background-color:#CCC;"><td width="212"><b>Function</b></td><td width="310"><b>Setup</b></td></tr>
+        <div class="postbox" id="support">
+        <h3>Google Authorship Settings</h3>
+<table cellpadding="6">
+        
 		
 
 <?php
@@ -100,28 +114,29 @@ global $current_user;
 		</tr>
 
 	</table>
+    </div>
      <p><input type="submit" name="search" value="Update Options" class="button" /></p>  
 </form>
 <br />
-<h1>Google Analytics Settings</h1>
+
         <form method="POST" action="">  
         <input type="hidden" name="update_analyticsoptions" value="true" />
-        <table cellpadding="2">
-        <tr style="background-color:#CCC;">
-        <td width="210"><b>Analytics</b></td>
-        <td width="310"><b>ID</b></td>
-        </tr>
+        <div class="postbox" id="support">
+        <h3>Google Analytics Settings</h3>
+        <table cellpadding="6">
+        
         <tr>
-        <td>Please Enter your Tracking ID</td>
+        <td>Please Enter your Analytics Tracking ID</td>
         <td><input size="51" type="text" value="<?php echo get_option('zeo_analytics_id'); ?>" name="zeo_analytics_id"  /></td>
         </tr>
         
         
         </table>
+        </div>
             <p><input type="submit" name="search" value="Update Options" class="button" /></p>  
         </form> 
 
 
-
+</div></div>
 
 </div>

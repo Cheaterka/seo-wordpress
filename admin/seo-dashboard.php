@@ -1,6 +1,5 @@
 <div class="wrap">
 <h1>Wordpress SEO Plugin Settings</h1>
-<br />
 <?php 
 
 function zeo_ischecked($chkname,$value)
@@ -55,20 +54,28 @@ LIKING ME and ADDING ME to your circles</h3></strong>
 <td style="padding-top:10px;" >
 <div class="g-plus" data-href="https://plus.google.com/101518602031253199279?rel=publisher" data-width="170" data-height="70" data-theme="light"></div>
 </td>
+<td style="padding-top:10px;" >
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a name="fb_share" type="icon_link" 
+   share_url="http://mervin.info/seo-wordpress" style="font-weight:bold; font-size:15px;">Share me Please</a> 
+<script src="http://static.ak.fbcdn.net/connect.php/js/FB.Share" 
+        type="text/javascript">
+</script>
+</td>
 </tr>
 </table>
 </div>
 
-                    <div class="postbox" id="support">
+                    
 <form method="POST" action="">  
             <input type="hidden" name="update_zeooptions" value="true" />  
+            <div class="postbox" id="support">
             <table cellpadding="6">
 	            <h3>Home Page Settings</h3>
                 
                 <tr><td width="210">
 				Home Page Title: 
 				</td><td>
-            	<input size="50" type="text" value="<?php echo get_option('zeo_common_home_title'); ?>" name="zeo_common_home_title"  />  
+            	<input size="55" type="text" value="<?php echo get_option('zeo_common_home_title'); ?>" name="zeo_common_home_title"  />  
             	</td></tr>
                 <tr><td>
 				Home Page  Meta Description:
@@ -78,20 +85,20 @@ LIKING ME and ADDING ME to your circles</h3></strong>
                 <tr><td>
 				Home Page  Meta Keywords:
 				</td><td>
-            	<input size="50" type="text" value="<?php echo get_option('zeo_home_keywords'); ?>" name="zeo_home_keywords"  />  
+            	<input size="55" type="text" value="<?php echo get_option('zeo_home_keywords'); ?>" name="zeo_home_keywords"  />  
             	</td></tr></table>
                 
                 </div>
                 
-                    <div class="postbox" id="support">
+                <div class="postbox" id="support">
                 
                 
-                <table>
+                <table cellpadding="6">
                 <h3>Other Page Title Settings</h3>
-                <tr style="background-color:#CCC;"><td>
-				<b>Titles</b> </td><td><b>Title Prefix</b>
+                <tr><td>
+				<h3>Titles</h3> </td><td><h3>Title Prefix</h3>
 				</td><td>
-            	<b>Title Suffix</b>
+            	<h3>Title Suffix</h3>
             	</td></tr>
                 <tr><td>
 				Blog Page Title: </td><td> Blog Page Title
@@ -134,16 +141,18 @@ LIKING ME and ADDING ME to your circles</h3></strong>
 				</td><td>
             	<input size="50" type="text" value="<?php echo get_option('zeo_common_error_title'); ?>" name="zeo_common_error_title"  />  
             	</td></tr>
-                </div>
+                </table>
                 
-                <table cellpadding="2">
+                </div>
+                 <div class="postbox" id="support">
+                <table cellpadding="6">
                 <h3>General Settings</h3>
-                <tr style="background-color:#CCC;">
-        		<td width="212"><b>Functions</b></td>
-        		<td width="312"><b>Setup</b></td>
+                <tr>
+        		<td width="212"><h3>Functions</h3></td>
+        		<td width="312"><h3>Setup</h3></td>
         		</tr>
                 <tr><td>
-				Activate Other Page title settings: 
+				Activate Other Page Title settings: 
 				</td><td>
             	<input type="checkbox" name="zeo_activate_title" value="yes" <?php if(zeo_ischecked('zeo_activate_title', 'yes' )){echo "checked";}?>>  </input>
             	</td></tr>
@@ -152,17 +161,18 @@ LIKING ME and ADDING ME to your circles</h3></strong>
 				</td><td>
             	<input type="checkbox" name="zeo_canonical_url" value="yes" <?php if(zeo_ischecked('zeo_canonical_url', 'yes' )){echo "checked";}?>>  </input>
             	</td></tr>
+                <!--
                 <tr><td>
 				rel = NoFollow for Outbound Links: 
 				</td><td>
             	<input type="checkbox" name="zeo_nofollow" value="yes" <?php if(zeo_ischecked('zeo_nofollow', 'yes' )){echo "checked";}?>>  </input>
-            	</td></tr>
+            	</td></tr>              
+                -->
+                </table>
+            	</div>
                 
-                
-			</table>
             <p><input type="submit" name="search" value="Update Options" class="button" /></p>  
         </form>        
      
        </div></div></div>
-</div></div></div>
-</div>
+

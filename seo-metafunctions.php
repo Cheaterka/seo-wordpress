@@ -17,7 +17,7 @@ function zeo_activate() {
 	add_option('zeo_home_description', ''); 
 	add_option('zeo_home_keywords', '');
 	add_option('zeo_canonical_url', 'yes');
-	add_option('zeo_nofollow', 'yes');
+	add_option('zeo_nofollow', 'no');
 	add_option('zeo_activate_title', 'yes');	
 	
 }
