@@ -57,7 +57,7 @@ function zeo_relnofollow($content){
 	return str_replace('<a href=', '<a rel="nofollow" href=',  $content);
 }
 
-/* Category No Follow */
+/* Category No Follow 
 
 if(is_category()&& zeo_ischeckeds('zeo_category_nofollow', 'yes' )){
 add_action('wp_head', 'zeo_category_nofollowfunc');
@@ -68,7 +68,7 @@ return '<meta name="robots" content="noindex,follow" />';
 	
 }
 
-
+*/
 /* General Function */
 
 function zeo_ischeckeds($chkname,$value)

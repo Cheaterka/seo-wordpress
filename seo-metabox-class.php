@@ -68,8 +68,8 @@ public $zeo_uniqueid = array ('zeo_title','zeo_description','zeo_keywords', 'zeo
 		
         echo '<table>
 		<tr>
-		<td width="40%"><b>Title</b></td>
-		<td><form method="POST" action=""> <input type="text" size="80" name="zeo_title" value="';
+		<td width="30%"><b>Title</b></td>
+		<td><form method="POST" action=""> <input type="text" size="82" name="zeo_title" value="';
 		echo $titlevalue;
 
 		echo '" ></input>
@@ -80,7 +80,7 @@ public $zeo_uniqueid = array ('zeo_title','zeo_description','zeo_keywords', 'zeo
 		<td><b>Description</b></td>
 		<td>
 		
-		<textarea name="zeo_description" rows="2" cols="82" >';
+		<textarea name="zeo_description" rows="2" cols="84" >';
 		echo $descriptionvalue;
 		echo '</textarea>
 		
@@ -89,7 +89,7 @@ public $zeo_uniqueid = array ('zeo_title','zeo_description','zeo_keywords', 'zeo
 		</tr>
 		<tr>
 		<td><b>Keywords</b></td>
-		<td><input type="text" size="80" name="zeo_keywords" value="';
+		<td><input type="text" size="82" name="zeo_keywords" value="';
 		echo $keywordsvalue;
 		
 		echo '" ></input></form></td>';
@@ -279,8 +279,21 @@ public $zeo_uniqueid = array ('zeo_title','zeo_description','zeo_keywords', 'zeo
 			}
 			return $link;
 	}
+	public function zeo_ischeck_head($chkname,$value)
+    {
+                  
+                if(get_option($chkname) == $value)
+                {
+                    return true;
+                } 
+        	return false;
+	}
+	
 
 public function zeo_head(){
+	if (is_feed()) {
+			return;
+		}
 	$i=1;
 	echo "\n<!-- Wordpress SEO Plugin by Mervin Praison ( http://mervin.info/seo-wordpress/ ) --> \n";
 	foreach ($this->zeo_uniqueid as $uid){
@@ -290,27 +303,25 @@ public function zeo_head(){
 		
 		if (is_front_page()&& $i==1){
 			if(get_option('zeo_home_description')!=NULL)echo "<meta name='description' content='".get_option('zeo_home_description')."'/> ";
-			if(get_option('zeo_home_keywords')!=NULL)echo "<meta name='keywords' content='".get_option('zeo_home_keywords')."'/>";
+			if(get_option('zeo_home_keywords')!=NULL)echo " <meta name='keywords' content='".get_option('zeo_home_keywords')."'/>";
 			$i=2;
 		}
 		elseif($checkvalue!=NULL){
-			if($uid=='zeo_description')echo "<meta name='description' content='".$seo_data_class->zeo_get_post_meta($uid)."'/> ";
-			if($uid=='zeo_keywords')echo "<meta name='keywords' content='".$seo_data_class->zeo_get_post_meta($uid)."'/>";
-			if($uid=='zeo_index')echo "<meta name='robots' content='".$seo_data_class->zeo_get_post_meta($uid)."'/>";
+			if($uid=='zeo_description' && get_option('zeo_home_description')==NULL )echo "<meta name='description' content='".$seo_data_class->zeo_get_post_meta($uid)."'/> ";
+			if($uid=='zeo_keywords' && get_option('zeo_home_keywords')==NULL)echo " <meta name='keywords' content='".$seo_data_class->zeo_get_post_meta($uid)."'/>";
+			if($uid=='zeo_index')echo " <meta name='robots' content='".$seo_data_class->zeo_get_post_meta($uid)."'/>";
 			
 		}
 				
 	}
-/*
-	if(is_category())$url = get_category_link();
-	if(is_tag())$url = get_tag_link();
-	if(is_date())$url = get_date_link();
-	if(is_page()|| is_post())$url = get_permalink();
-	*/
+
 
 	global $wp_query;
 	$url = $this->zeo_get_url($wp_query);
-	if(get_option('zeo_canonical_url')!=NULL && get_option('zeo_canonical_url')=='yes'/*&& $url!=NULL*/)echo "<link rel='canonical' href='".$url."' />";
+	if(get_option('zeo_canonical_url')!=NULL && get_option('zeo_canonical_url')=='yes'&& $url!=NULL )echo "<link rel='canonical' href='".$url."' />";
+	if(is_category()&& $this->zeo_ischeck_head('zeo_category_nofollow', 'yes' ))echo ' <meta name="robots" content="noindex,follow" />';
+	if(is_tag()&& $this->zeo_ischeck_head('zeo_tag_nofollow', 'yes' ))echo ' <meta name="robots" content="noindex,follow" />';
+	if(is_date()&& $this->zeo_ischeck_head('zeo_date_nofollow', 'yes' ))echo ' <meta name="robots" content="noindex,follow" />';
 	echo "\n<!-- End of Wordpress SEO Plugin by Mervin Praison --> \n";	
 	}	
 	
