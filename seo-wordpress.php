@@ -22,6 +22,7 @@ define( 'SEO_BASENAME', plugin_basename( __FILE__ ) );
 define( 'SEO_ADMIN_DIRECTORY', 'seo-wordpress/admin');
 
 global $post;
+global $wp_query;
 require_once ( 'seo-global-functions.php');
 require_once ( 'seo-data-class.php');
 require_once ( 'seo-metabox-class.php');
@@ -36,8 +37,7 @@ require_once ( 'seo-xml-sitemap.php');
 register_activation_hook(__FILE__, 'zeo_activate');
 
 
-$zeo = new seo_metabox_class();
-
+$zeo = new zeo_head_class();
 
 add_action( 'wp_head', array( $zeo, 'zeo_head') );
 

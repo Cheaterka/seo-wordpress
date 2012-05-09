@@ -30,6 +30,9 @@ function zeooptions_update(){
 	update_option('zeo_canonical_url', $_POST['zeo_canonical_url']);
 	update_option('zeo_nofollow', $_POST['zeo_nofollow']);
 	update_option('zeo_activate_title', $_POST['zeo_activate_title']);	
+	update_option('zeo_category_nofollow', $_POST['zeo_category_nofollow']);
+	update_option('zeo_tag_nofollow', $_POST['zeo_tag_nofollow']);
+	update_option('zeo_date_nofollow', $_POST['zeo_date_nofollow']);
 	
 	echo '<div class="updated">
 		<p>
@@ -160,6 +163,21 @@ LIKING ME and ADDING ME to your circles</h3></strong>
 				Canonical Link: 
 				</td><td>
             	<input type="checkbox" name="zeo_canonical_url" value="yes" <?php if(zeo_ischecked('zeo_canonical_url', 'yes' )){echo "checked";}?>>  </input>
+            	</td></tr>
+                <tr><td>
+				Category No Follow: 
+				</td><td>
+            	<input type="checkbox" name="zeo_category_nofollow" value="yes" <?php if(zeo_ischecked('zeo_category_nofollow', 'yes' )){echo "checked";}?>> </input>
+            	</td></tr>
+                <tr><td>
+				Tag No Follow: 
+				</td><td>
+            	<input type="checkbox" name="zeo_tag_nofollow" value="yes" <?php if(zeo_ischecked('zeo_tag_nofollow', 'yes' )){echo "checked";}?>> </input>
+            	</td></tr>
+                <tr><td>
+				Date Based Page No Follow: 
+				</td><td>
+            	<input type="checkbox" name="zeo_date_nofollow" value="yes" <?php if(zeo_ischecked('zeo_date_nofollow', 'yes' )){echo "checked";}?>> </input>
             	</td></tr>
                 <!--
                 <tr><td>
