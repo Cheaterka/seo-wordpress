@@ -16,12 +16,16 @@ function zeo_activate() {
 	add_option('zeo_analytics_id', ''); 
 	add_option('zeo_home_description', ''); 
 	add_option('zeo_home_keywords', '');
+	add_option('zeo_blog_description', ''); 
+	add_option('zeo_blog_keywords', '');
 	add_option('zeo_canonical_url', 'yes');
 	add_option('zeo_nofollow', 'no');
 	add_option('zeo_activate_title', 'yes');
 	add_option('zeo_category_nofollow', 'no');	
 	add_option('zeo_tag_nofollow', 'no');	
 	add_option('zeo_date_nofollow', 'no');	
+	add_option('zeo_post_types', '');
+	
 	
 }
 

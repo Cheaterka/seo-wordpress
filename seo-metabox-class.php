@@ -25,6 +25,8 @@ public $zeo_uniqueid = array ('zeo_title','zeo_description','zeo_keywords', 'zeo
 		
 	public function add_some_meta_box()
     {
+		/*
+		
         add_meta_box( 
              'some_meta_box_name'
             ,__( 'Wordpress SEO Plugin Settings')
@@ -41,6 +43,25 @@ public $zeo_uniqueid = array ('zeo_title','zeo_description','zeo_keywords', 'zeo
             ,'advanced'
             ,'high'
         );
+		
+		*/
+		
+		$post_types=get_post_types('','names');
+		foreach ($post_types as $post_type ) {
+			if(!in_array($post_type, get_option('zeo_post_types'))){ 
+			
+			add_meta_box( 
+             'some_meta_box_name'
+            ,__( 'Wordpress SEO Plugin Settings')
+            ,array( &$this, 'render_meta_box_content' )
+            ,$post_type 
+            ,'advanced'
+            ,'high'
+        	);
+			
+			}
+		}
+		
     }
 
 	public function render_meta_box_content($post) 
@@ -306,10 +327,15 @@ public function zeo_head(){
 			if(get_option('zeo_home_keywords')!=NULL)echo " <meta name='keywords' content='".get_option('zeo_home_keywords')."'/>";
 			$i=2;
 		}
+		elseif(is_home() && $i==1){
+			if(get_option('zeo_blog_description')!=NULL)echo "<meta name='description' content='".get_option('zeo_blog_description')."'/> ";
+			if(get_option('zeo_blog_keywords')!=NULL)echo " <meta name='keywords' content='".get_option('zeo_blog_keywords')."'/>";
+			$i=2;
+		}
 		elseif($checkvalue!=NULL){
 			if($uid=='zeo_description' && get_option('zeo_home_description')==NULL )echo "<meta name='description' content='".$seo_data_class->zeo_get_post_meta($uid)."'/> ";
 			if($uid=='zeo_keywords' && get_option('zeo_home_keywords')==NULL)echo " <meta name='keywords' content='".$seo_data_class->zeo_get_post_meta($uid)."'/>";
-			if($uid=='zeo_index')echo " <meta name='robots' content='".$seo_data_class->zeo_get_post_meta($uid)."'/>";
+			if($uid=='zeo_index' && !is_front_page())echo " <meta name='robots' content='".$seo_data_class->zeo_get_post_meta($uid)."'/>";
 			
 		}
 				

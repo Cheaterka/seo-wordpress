@@ -19,6 +19,8 @@ function zeooptions_update(){
 	update_option('zeo_common_home_title', $_POST['zeo_common_home_title']);
 	update_option('zeo_home_description', $_POST['zeo_home_description']);
 	update_option('zeo_home_keywords', $_POST['zeo_home_keywords']); 
+	update_option('zeo_blog_description', $_POST['zeo_blog_description']);
+	update_option('zeo_blog_keywords', $_POST['zeo_blog_keywords']); 
 	update_option('zeo_common_frontpage_title', $_POST['zeo_common_frontpage_title']); 
 	update_option('zeo_common_page_title', $_POST['zeo_common_page_title']); 
 	update_option('zeo_common_post_title', $_POST['zeo_common_post_title']); 
@@ -33,6 +35,7 @@ function zeooptions_update(){
 	update_option('zeo_category_nofollow', $_POST['zeo_category_nofollow']);
 	update_option('zeo_tag_nofollow', $_POST['zeo_tag_nofollow']);
 	update_option('zeo_date_nofollow', $_POST['zeo_date_nofollow']);
+	update_option('zeo_post_types', $_POST['zeo_post_types']);
 	
 	echo '<div class="updated">
 		<p>
@@ -89,6 +92,16 @@ LIKING ME and ADDING ME to your circles</h3></strong>
 				Home Page  Meta Keywords:
 				</td><td>
             	<input size="55" type="text" value="<?php echo get_option('zeo_home_keywords'); ?>" name="zeo_home_keywords"  />  
+            	</td></tr>
+                <tr><td>
+				Blog Page  Meta Description (if exists):
+				</td><td>
+            	<textarea size="50" rows="3" cols="52" name="zeo_blog_description" ><?php echo get_option('zeo_blog_description'); ?></textarea>  
+            	</td></tr>
+                <tr><td>
+				Blog Page  Meta Keywords (if exists):
+				</td><td>
+            	<input size="55" type="text" value="<?php echo get_option('zeo_blog_keywords'); ?>" name="zeo_blog_keywords"  />  
             	</td></tr></table>
                 
                 </div>
@@ -188,6 +201,35 @@ LIKING ME and ADDING ME to your circles</h3></strong>
                 -->
                 </table>
             	</div>
+                
+                
+                <div class="postbox" id="support">
+                <table cellpadding="6">
+                <h3>Custom Posts Meta Box (Advanced Users)</h3>
+                <tr><td><br />
+                <b>Disable SEO Setting Options on the Following Pages</b>
+                </td></tr>
+                <tr><td>
+                <?php 
+					$post_types=get_post_types('','names');
+				?> 
+					<select name='zeo_post_types[]' size=5 width='300px' style="width: 300px" multiple>
+                    <option value="" <?php if(in_array('', get_option('zeo_post_types'))){ echo 'selected';} ?> > Select None</option>
+                <?php
+					foreach ($post_types as $post_type ) {
+					
+				?>
+                        
+					<option value="<?php echo $post_type; ?>" <?php if(in_array($post_type, get_option('zeo_post_types'))){ echo 'selected';} ?> > <?php echo $post_type ?></option>
+                    
+                    <?php					
+					}
+				?>
+                	</select>
+                </td></tr>
+                </table>                
+                </div>
+                
                 
             <p><input type="submit" name="search" value="Update Options" class="button" /></p>  
         </form>        
