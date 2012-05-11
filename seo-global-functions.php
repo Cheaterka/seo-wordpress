@@ -20,6 +20,7 @@ function zeo_options_menu(){
 	add_menu_page( 'Wordpress SEO','Wordpress SEO',	0, SEO_ADMIN_DIRECTORY.'/seo-dashboard.php', '', plugins_url('/images/icon.png', __FILE__));
 	add_submenu_page( SEO_ADMIN_DIRECTORY.'/seo-dashboard.php', 'Dashboard ', 'Dashboard', 0,SEO_ADMIN_DIRECTORY.'/seo-dashboard.php' );
 	add_submenu_page( SEO_ADMIN_DIRECTORY.'/seo-dashboard.php', 'Authorship, Analytics', 'Authorship, Analytics', 9, SEO_ADMIN_DIRECTORY.'/seo-authorship.php' );
+	add_submenu_page( SEO_ADMIN_DIRECTORY.'/seo-dashboard.php', 'XMLsitemap', 'XMLsitemap', 9, SEO_ADMIN_DIRECTORY.'/seo-xml-sitemap.php' );
 	// add_submenu_page( SEO_ADMIN_DIRECTORY.'/seo-dashboard.php', 'Import', 'Import', 9, SEO_ADMIN_DIRECTORY.'/seo-import-export.php' );
 	
 }

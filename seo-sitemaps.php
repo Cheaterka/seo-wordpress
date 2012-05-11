@@ -18,8 +18,8 @@ class ZEO_Sitemaps {
 
 	function __construct() {
 		$options = get_option('zeo_xml');
-		if ( !isset($options['enablexmlsitemap']) || !$options['enablexmlsitemap'] )
-			return;
+		//if ( !isset($options['enablexmlsitemap']) || !$options['enablexmlsitemap'] )
+		//	return;
 
 		add_action( 'init', array( $this, 'init' ) );
 		add_action( 'template_redirect', array( $this, 'redirect' ) );
@@ -144,8 +144,8 @@ class ZEO_Sitemaps {
 			if ( in_array( $post_type, array('revision','nav_menu_item','attachment') ) )
 				continue;
 				
-			if ( isset($options['post_types-'.$post_type.'-not_in_sitemap']) && $options['post_types-'.$post_type.'-not_in_sitemap'] )
-				continue;
+		//	if ( isset($options['post_types-'.$post_type.'-not_in_sitemap']) && $options['post_types-'.$post_type.'-not_in_sitemap'] )
+		//		continue;
 
 			$count = $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(ID) FROM $wpdb->posts WHERE post_type = %s AND post_status = 'publish' LIMIT 1", $post_type ) );
 			// don't include post types with no posts
@@ -175,8 +175,8 @@ class ZEO_Sitemaps {
 			if ( in_array( $tax, array('link_category', 'nav_menu', 'post_format') ) )
 				continue;
 				
-			if ( isset($options['taxonomies-'.$tax.'-not_in_sitemap']) && $options['taxonomies-'.$tax.'-not_in_sitemap'] )
-				continue;
+		//	if ( isset($options['taxonomies-'.$tax.'-not_in_sitemap']) && $options['taxonomies-'.$tax.'-not_in_sitemap'] )
+		//		continue;
 			// don't include taxonomies with no terms
 			if ( ! $wpdb->get_var( $wpdb->prepare( "SELECT term_id FROM $wpdb->term_taxonomy WHERE taxonomy = %s AND count != 0 LIMIT 1", $tax ) ) )
 				continue;
@@ -204,7 +204,7 @@ class ZEO_Sitemaps {
 	 */
 	function build_post_type_map( $post_type ) {
 		$options = get_zeo_options();
-		
+		/*
 		if ( 
 			( isset($options['post_types-'.$post_type.'-not_in_sitemap']) && $options['post_types-'.$post_type.'-not_in_sitemap'] ) 
 		 	|| in_array( $post_type, array('revision','nav_menu_item','attachment') ) 
@@ -212,6 +212,7 @@ class ZEO_Sitemaps {
 			$this->bad_sitemap = true;
 			return;
 		}
+		*/
 		
 		$output = '';
 
