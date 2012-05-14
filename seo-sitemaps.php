@@ -204,7 +204,7 @@ class ZEO_Sitemaps {
 	 */
 	function build_post_type_map( $post_type ) {
 		$options = get_zeo_options();
-		/*
+		
 		if ( 
 			( isset($options['post_types-'.$post_type.'-not_in_sitemap']) && $options['post_types-'.$post_type.'-not_in_sitemap'] ) 
 		 	|| in_array( $post_type, array('revision','nav_menu_item','attachment') ) 
@@ -212,7 +212,7 @@ class ZEO_Sitemaps {
 			$this->bad_sitemap = true;
 			return;
 		}
-		*/
+		
 		
 		$output = '';
 

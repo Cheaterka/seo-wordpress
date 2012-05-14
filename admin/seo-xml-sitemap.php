@@ -71,7 +71,7 @@ function xml_sitemaps_page() {
 
 			postbox('xmlsitemaps',__('XML Sitemap', 'wordpress-seo'),$content);
 			
-			do_action('wpseo_xmlsitemaps_config', $this);		
+			do_action('wpseo_xmlsitemaps_config', xml_sitemaps_page());		
 			
 
 		}
