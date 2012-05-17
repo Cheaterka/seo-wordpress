@@ -51,28 +51,7 @@ function analyticsoptions_update(){
 
 <div class="postbox-container" style="width:70%;">
 				<div class="metabox-holder">	
-					<div class="meta-box-sortables ui-sortable">
-                    <div class="postbox" id="support">
-<strong><h3>Want more FREE Plugins? Encourage me by,
-LIKING ME and ADDING ME to your circles</h3></strong>
-<table>
-<tr>
-<td>
-<iframe src="//www.facebook.com/plugins/likebox.php?href=http%3A%2F%2Fwww.facebook.com%2Fmervinpraisons&amp;width=250&amp;height=62&amp;colorscheme=light&amp;show_faces=false&amp;border_color&amp;stream=false&amp;header=true&amp;appId=252850214734670" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:250px; height:62px;" allowTransparency="true"></iframe>
-</td>
-<td style="padding-top:10px;" >
-<div class="g-plus" data-href="https://plus.google.com/101518602031253199279?rel=publisher" data-width="170" data-height="70" data-theme="light"></div>
-</td>
-<td style="padding-top:10px;" >
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a name="fb_share" type="icon_link" 
-   share_url="http://mervin.info/seo-wordpress" style="font-weight:bold; font-size:15px;">Share me Please</a> 
-<script src="http://static.ak.fbcdn.net/connect.php/js/FB.Share" 
-        type="text/javascript">
-</script>
-</td>
-</tr>
-</table>
-</div>
+					<div class="meta-box-sortables ui-sortable">                   
 
 
 

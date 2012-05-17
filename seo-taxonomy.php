@@ -3,7 +3,7 @@
 class ZEO_Taxonomy {
 	
 	function ZEO_Taxonomy() {
-		$options = get_zeo_options();
+		$options = get_mervin_options();
 		
 		if (is_admin() && isset($_GET['taxonomy']) && 
 			( !isset($options['tax-hideeditbox-'.$_GET['taxonomy']]) || !$options['tax-hideeditbox-'.$_GET['taxonomy']]) )
@@ -48,7 +48,7 @@ class ZEO_Taxonomy {
 	
 	function term_additions_form( $term, $taxonomy ) {
 		$tax_meta = get_option('zeo_taxonomy_meta');
-		$options = get_zeo_options();
+		$options = get_mervin_options();
 		
 		if ( isset($tax_meta[$taxonomy][$term->term_id]) )
 			$tax_meta = $tax_meta[$taxonomy][$term->term_id];

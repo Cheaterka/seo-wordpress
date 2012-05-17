@@ -28,12 +28,28 @@ function zeo_options_menu(){
 
 /* Get option value function */
 
-function get_zeo_options_arr() {
-	$optarr = array('zeo','zeo_indexation', 'zeo_permalinks', 'zeo_titles', 'zeo_rss', 'zeo_internallinks', 'zeo_xml', 'zeo_social');
-	return apply_filters( 'zeo_options', $optarr );
+function zeo_get_value( $val, $postid = '' ) {
+	if ( empty($postid) ) {
+		global $post;
+		if (isset($post))
+			$postid = $post->ID;
+		else 
+			return false;
+	}
+	$custom = get_post_custom($postid);
+	if (!empty($custom['_mervin_seo_'.$val][0]))
+		return maybe_unserialize( $custom['_mervin_seo_'.$val][0] );
+	else
+		return false;
 }
 
-function get_zeo_options() {
+function get_zeo_options_arr() {
+	$optarr = array('zeo','zeo_indexation', 'zeo_permalinks', 'zeo_titles', 'zeo_rss', 'zeo_internallinks', 'mervin_sitemap', 'zeo_social');
+	return apply_filters( 'mervin_options', $optarr );
+}
+
+
+function get_mervin_options() {
 	$options = array();
 	foreach( get_zeo_options_arr() as $opt ) {
 		$options = array_merge( $options, (array) get_option($opt) );

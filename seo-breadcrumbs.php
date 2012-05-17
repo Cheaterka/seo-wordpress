@@ -107,7 +107,7 @@ class ZEO_Breadcrumbs {
 	}
 	
 	function breadcrumb($prefix = '', $suffix = '', $display = true) {
-		$options = get_zeo_options();
+		$options = get_mervin_options();
 
 		global $wp_query, $post, $paged;
 
