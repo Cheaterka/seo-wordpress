@@ -202,7 +202,7 @@ LIKING ME and ADDING ME to your circles</h3></strong>
                 </table>
             	</div>
                 
-                
+               <!-- 
                 <div class="postbox" id="support">
                 <table cellpadding="6">
                 <h3>Custom Posts Meta Box (Advanced Users)</h3>
@@ -210,12 +210,11 @@ LIKING ME and ADDING ME to your circles</h3></strong>
                 <b>Disable SEO Setting Options on the Following Pages</b>
                 </td></tr>
                 <tr><td>
-                <?php 
-					$post_types=get_post_types('','names');
-				?> 
+
 					<select name='zeo_post_types[]' size=5 width='300px' style="width: 300px" multiple>
                     <option value="" <?php if(in_array('', get_option('zeo_post_types'))){ echo 'selected';} ?> > Select None</option>
                 <?php
+					$post_types=get_post_types('','names');
 					foreach ($post_types as $post_type ) {
 					
 				?>
@@ -230,6 +229,7 @@ LIKING ME and ADDING ME to your circles</h3></strong>
                 </table>                
                 </div>
                 
+                -->
                 
             <p><input type="submit" name="search" value="Update Options" class="button" /></p>  
         </form>        

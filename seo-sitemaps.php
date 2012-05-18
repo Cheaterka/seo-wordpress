@@ -17,9 +17,9 @@ class ZEO_Sitemaps {
 	private $bad_sitemap = false;
 
 	function __construct() {
-		$options = get_option('zeo_xml');
-		//if ( !isset($options['enablexmlsitemap']) || !$options['enablexmlsitemap'] )
-		//	return;
+		$options = get_option('mervin_sitemap');
+		if ( !isset($options['enablexmlsitemap']) || !$options['enablexmlsitemap'] )
+			return;
 
 		add_action( 'init', array( $this, 'init' ) );
 		add_action( 'template_redirect', array( $this, 'redirect' ) );
@@ -144,8 +144,8 @@ class ZEO_Sitemaps {
 			if ( in_array( $post_type, array('revision','nav_menu_item','attachment') ) )
 				continue;
 				
-		//	if ( isset($options['post_types-'.$post_type.'-not_in_sitemap']) && $options['post_types-'.$post_type.'-not_in_sitemap'] )
-		//		continue;
+			if ( isset($options['post_types-'.$post_type.'-not_in_sitemap']) && $options['post_types-'.$post_type.'-not_in_sitemap'] )
+				continue;
 
 			$count = $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(ID) FROM $wpdb->posts WHERE post_type = %s AND post_status = 'publish' LIMIT 1", $post_type ) );
 			// don't include post types with no posts
@@ -175,8 +175,8 @@ class ZEO_Sitemaps {
 			if ( in_array( $tax, array('link_category', 'nav_menu', 'post_format') ) )
 				continue;
 				
-		//	if ( isset($options['taxonomies-'.$tax.'-not_in_sitemap']) && $options['taxonomies-'.$tax.'-not_in_sitemap'] )
-		//		continue;
+			if ( isset($options['taxonomies-'.$tax.'-not_in_sitemap']) && $options['taxonomies-'.$tax.'-not_in_sitemap'] )
+				continue;
 			// don't include taxonomies with no terms
 			if ( ! $wpdb->get_var( $wpdb->prepare( "SELECT term_id FROM $wpdb->term_taxonomy WHERE taxonomy = %s AND count != 0 LIMIT 1", $tax ) ) )
 				continue;
@@ -213,9 +213,7 @@ class ZEO_Sitemaps {
 			return;
 		}
 		
-		
 		$output = '';
-		
 
 		$front_id = get_option('page_on_front');
 		if ( ! $front_id && $post_type == 'post' ) {
@@ -255,17 +253,13 @@ class ZEO_Sitemaps {
 		$where_filter = apply_filters('zeo_typecount_where', $where_filter, $post_type);
 		$typecount = $wpdb->get_var("SELECT COUNT(ID) FROM $wpdb->posts {$join_filter} WHERE post_status = 'publish' AND post_password = '' AND post_type = '$post_type' {$where_filter}");
 		
-		
 		if ( $typecount == 0 && empty( $archive ) ) {
 			$this->bad_sitemap = true;
 			return;
 		}
-		
 
 		// Let's flush the object cache so we're not left with garbage from other plugins
-
 		wp_cache_flush();
-		
 		
 		$stackedurls = array();
 
@@ -277,15 +271,12 @@ class ZEO_Sitemaps {
 			$total = $typecount;
 
 		// We grab post_date, post_name, post_author and post_status too so we can throw these objects into get_permalink, which saves a get_post call for each permalink.
-		
 		while( $total > $offset ) {
 			
 			$join_filter = '';
 			$join_filter = apply_filters('zeo_posts_join', $join_filter, $post_type);
 			$where_filter = '';
 			$where_filter = apply_filters('zeo_posts_where', $where_filter, $post_type);
-			global $post;
-			$posts = $post; 
 			
 			$posts = $wpdb->get_results("SELECT ID, post_content, post_name, post_author, post_parent, post_modified_gmt, post_date, post_date_gmt
 			FROM $wpdb->posts {$join_filter}
@@ -295,7 +286,6 @@ class ZEO_Sitemaps {
 			{$where_filter}
 			ORDER BY post_modified ASC
 			LIMIT $steps OFFSET $offset");
-			
 			
 			$offset = $offset + $steps;
 
@@ -311,17 +301,13 @@ class ZEO_Sitemaps {
 				if ( zeo_get_value('redirect', $p->ID) && strlen( zeo_get_value('redirect', $p->ID) ) > 0 )
 					continue;
 
-		
 				$url = array();
 
 				$url['mod']	= ( isset( $p->post_modified_gmt ) && $p->post_modified_gmt != '0000-00-00 00:00:00' ) ? $p->post_modified_gmt : $p->post_date_gmt ;
 				$url['chf'] = 'weekly';
 				$url['loc'] = get_permalink( $p );
 
-			
 				$canonical = zeo_get_value('canonical', $p->ID);
-				
-				
 				if ( $canonical && $canonical != '' && $canonical != $url['loc']) {
 					// Let's assume that if a canonical is set for this page and it's different from the URL of this post, that page is either
 					// already in the XML sitemap OR is on an external site, either way, we shouldn't include it here.
@@ -331,9 +317,6 @@ class ZEO_Sitemaps {
 					if ( isset($options['trailingslash']) && $options['trailingslash'] && $p->post_type != 'post' )
 						$url['loc'] = trailingslashit( $url['loc'] );
 				}
-				
-				
-					
 
 				$pri = zeo_get_value('sitemap-prio', $p->ID);
 				if (is_numeric($pri))
@@ -347,9 +330,6 @@ class ZEO_Sitemaps {
 					$url['pri'] = 1.0;
 
 				$url['images'] = array();
-				
-		
-				
 				if ( preg_match_all( '/<img [^>]+>/', $p->post_content, $matches ) ) {
 					foreach ( $matches[0] as $img ) {
 						// FIXME: get true caption instead of alt / title
@@ -372,6 +352,7 @@ class ZEO_Sitemaps {
 								$image['title'] = str_replace( array('-','_'), ' ', $match[2] );
 
 							if ( preg_match( '/alt=("|\')([^"\']+)("|\')/', $img, $match ) )
+
 								$image['alt'] = str_replace( array('-','_'), ' ', $match[2] );
 
 							$url['images'][$src] = $image;
@@ -393,8 +374,6 @@ class ZEO_Sitemaps {
 						$url['images'][$src] = $image;
 					}
 				}
-				
-				
 
 				$url['images'] = apply_filters( 'zeo_sitemap_urlimages', $url['images'], $p->ID );
 
@@ -406,7 +385,6 @@ class ZEO_Sitemaps {
 				// Clear the post_meta and the term cache for the post, as we no longer need it now.
 				wp_cache_delete( $p->ID, 'post_meta' );
 				// clean_object_term_cache( $p->ID, $post_type );
-				
 			}
 		}
 
@@ -414,9 +392,7 @@ class ZEO_Sitemaps {
 			$this->bad_sitemap = true;
 			return;
 		}
-		
 
-	
 		$this->sitemap = '<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" ';
 		$this->sitemap .= 'xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" ';
 		$this->sitemap .= 'xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'."\n";
@@ -430,7 +406,6 @@ class ZEO_Sitemaps {
 	 */
 	function build_tax_map( $taxonomy ) {
 		$options = get_mervin_options();
-		
 		if ( 
 			( isset($options['taxonomies-'.$taxonomy->name.'-not_in_sitemap']) && $options['taxonomies-'.$taxonomy->name.'-not_in_sitemap'] )
 			|| in_array( $taxonomy, array('link_category', 'nav_menu', 'post_format') )
@@ -438,7 +413,6 @@ class ZEO_Sitemaps {
 			$this->bad_sitemap = true;
 			return;
 		}
-		
 
 		$terms = get_terms( $taxonomy->name, array('hide_empty' => true) );
 
@@ -507,7 +481,7 @@ class ZEO_Sitemaps {
 		if ( $this->stylesheet )
 			echo apply_filters('zeo_stylesheet_url', $this->stylesheet) . "\n";
 		echo $this->sitemap;
-		echo "\n" . '<!-- XML Sitemap generated by Mervin Praison SEO Wordpress -->';
+		echo "\n" . '<!-- XML Sitemap generated by Yoast WordPress SEO -->';
 
 		if ( WP_DEBUG )
 			echo "\n" . '<!-- Built in ' . timer_stop() . ' seconds | ' . memory_get_peak_usage() . ' | ' . count($GLOBALS['wpdb']->queries) . ' -->';
@@ -610,7 +584,7 @@ class ZEO_Sitemaps {
 	 * Remove sitemaps residing on disk as they will block our rewrite.
 	 */
 	function delete_sitemaps() {
-		$options = get_option( 'zeo' );
+		$options = get_option( 'wpseo' );
 		if ( isset($options['enablexmlsitemap']) && $options['enablexmlsitemap'] ) {
 			$file = ABSPATH . 'sitemap_index.xml';
 			if ( ( ! isset($options['blocking_files']) || ! is_array( $options['blocking_files'] ) || ! in_array( $file, $options['blocking_files'] ) ) &&
@@ -619,7 +593,7 @@ class ZEO_Sitemaps {
 				if ( ! is_array( $options['blocking_files'] ) )
 					$options['blocking_files'] = array();
 				$options['blocking_files'][] = $file;
-				update_option( 'zeo', $options );
+				update_option( 'wpseo', $options );
 			}
 		}
 	}

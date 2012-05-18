@@ -102,4 +102,4 @@ class ZEO_Taxonomy {
 		}
 	}
 }
-$zeo_taxonomy = new ZEO_Taxonomy();
+// $zeo_taxonomy = new ZEO_Taxonomy();

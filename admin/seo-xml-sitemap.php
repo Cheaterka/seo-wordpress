@@ -40,11 +40,14 @@ function sitemapoptions_update(){
 										}
 									}
 								}
-	if(isset($_POST['pingyahoo'])){
-		$mervin_sitemap['pingyahoo']='yes';
+	if(isset($_POST['xml_ping_yahoo'])){
+		$mervin_sitemap['xml_ping_yahoo']='yes';
 	}
-	if(isset($_POST['pingask'])){
-		$mervin_sitemap['pingask']='yes';
+	if(isset($_POST['xml_ping_ask'])){
+		$mervin_sitemap['xml_ping_ask']='yes';
+	}
+	if(isset($_POST['enablexmlsitemap'])){
+		$mervin_sitemap['enablexmlsitemap']='yes';
 	}
 	
 	update_option('mervin_sitemap', $mervin_sitemap);
@@ -86,21 +89,28 @@ $options = get_mervin_options();
         <div class="handlediv" title="Click to toggle">
 <br />
 </div>
-        <h3 class="hndle"><span>Ping Settings</span></h3>
+        <h3 class="hndle"><span>Overall Settings</span></h3>
         <div class="container">
 <table cellpadding="6">
 		<tr>
+			<th align="left" style="font-weight:normal"><label for="enablesitemap">Enable XML Sitemap</label></th>
+
+			<td>
+				<input size="54" type="checkbox" name="enablexmlsitemap" id="enablesitemap" value="yes" class="regular-text" <?php if(isset($options['enablexmlsitemap'])){echo "checked";}?> />                
+			</td>
+		</tr>
+        <tr>
 			<th align="left" style="font-weight:normal"><label for="pingyahooid">Ping Yahoo!</label></th>
 
 			<td>
-				<input size="54" type="checkbox" name="pingyahoo" id="pingyahooid" value="yes" class="regular-text" <?php if(isset($options['pingyahoo'])){echo "checked";}?> />                
+				<input size="54" type="checkbox" name="xml_ping_yahoo" id="pingyahooid" value="yes" class="regular-text" <?php if(isset($options['xml_ping_yahoo'])){echo "checked";}?> />                
 			</td>
 		</tr>
 		<tr>
 
 			<th align="left" style="font-weight:normal"><label for="pingaskid">Ping Ask.com</label></th>
 			<td>
-				<input size="54" type="checkbox" name="pingask" id="pingaskid" value="yes" class="regular-text" <?php if(isset($options['pingask'])){echo "checked";}?> />
+				<input size="54" type="checkbox" name="xml_ping_ask" id="pingaskid" value="yes" class="regular-text" <?php if(isset($options['xml_ping_ask'])){echo "checked";}?> />
 			</td>
 		</tr>
 

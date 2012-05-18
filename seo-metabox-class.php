@@ -47,8 +47,9 @@ public $zeo_uniqueid = array ('zeo_title','zeo_description','zeo_keywords', 'zeo
 		*/
 		
 		$post_types=get_post_types('','names');
-		foreach ($post_types as $post_type ) {
-			if(!in_array($post_type, get_option('zeo_post_types'))){ 
+		foreach (get_post_types() as $post_type ) {
+			 
+			//if(!in_array($post_type, get_option('zeo_post_types'))){ 
 			
 			add_meta_box( 
              'some_meta_box_name'
@@ -59,7 +60,7 @@ public $zeo_uniqueid = array ('zeo_title','zeo_description','zeo_keywords', 'zeo
             ,'high'
         	);
 			
-			}
+			//}
 		}
 		
     }
@@ -316,6 +317,7 @@ public function zeo_head(){
 			return;
 		}
 	$i=1;
+	$options = get_mervin_options();
 	echo "\n<!-- Wordpress SEO Plugin by Mervin Praison ( http://mervin.info/seo-wordpress/ ) --> \n";
 	foreach ($this->zeo_uniqueid as $uid){
 	$seo_data_class = new seo_data_class();
@@ -325,6 +327,34 @@ public function zeo_head(){
 		if (is_front_page()&& $i==1){
 			if(get_option('zeo_home_description')!=NULL)echo "<meta name='description' content='".get_option('zeo_home_description')."'/> ";
 			if(get_option('zeo_home_keywords')!=NULL)echo " <meta name='keywords' content='".get_option('zeo_home_keywords')."'/>";
+			
+			/*  Adding Google Bing and Alexa Verifications  */	
+			
+			if ( is_front_page() ) {
+			if (!empty($options['verification-google'])) {
+				$google_meta = $options['verification-google'];
+				if ( strpos($google_meta, 'content') ) {
+					preg_match('/content="([^"]+)"/', $google_meta, $match);
+					$google_meta = $match[1];
+				}
+				echo "<meta name=\"google-site-verification\" content=\"$google_meta\" />\n";
+			}
+				
+			if (!empty($options['verification-bing'])) {
+				$bing_meta = $options['verification-bing'];
+				if ( strpos($bing_meta, 'content') ) {
+					preg_match('/content="([^"]+)"/', $bing_meta, $match);
+					$bing_meta = $match[1];
+				}								
+				echo "<meta name=\"msvalidate.01\" content=\"$bing_meta\" />\n";
+			}
+			
+			if (!empty($options['verification-alexa'])) {
+				echo "<meta name=\"alexaVerifyID\" content=\"".esc_attr($options['verification-alexa'])."\" />\n";
+			}	
+		}
+			
+			/*  Adding Google Bing and Alexa Verifications  */
 			$i=2;
 		}
 		elseif(is_home() && $i==1){

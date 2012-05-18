@@ -3,7 +3,7 @@
 class ZEO_Breadcrumbs {
 
 	function __construct() {
-		$options = get_option("zeo_internallinks");
+		$options = get_option("mervin_breadcrumbs");
 
 		if (isset($options['trytheme']) && $options['trytheme']) {
 			// Thesis
@@ -30,7 +30,7 @@ class ZEO_Breadcrumbs {
 	}
 
 	function bold_or_not($input) {
-		$opt = get_option("zeo_internallinks");
+		$opt = get_option("mervin_breadcrumbs");
 		if ( isset($opt['breadcrumbs-boldlast']) && $opt['breadcrumbs-boldlast'] ) {
 			return '<strong>'.$input.'</strong>';
 		} else {
@@ -111,7 +111,7 @@ class ZEO_Breadcrumbs {
 
 		global $wp_query, $post, $paged;
 
-		$opt 		= get_option("zeo_internallinks");
+		$opt 		= get_option("mervin_breadcrumbs");
 		$on_front 	= get_option('show_on_front');
 		$blog_page 	= get_option('page_for_posts');
 		$sep		= ( isset($opt['breadcrumbs-sep']) && $opt['breadcrumbs-sep'] != '' ) ? $opt['breadcrumbs-sep'] : '&raquo;';
@@ -320,8 +320,8 @@ class ZEO_Breadcrumbs {
 	}
 } 
 
-if (!function_exists('mervin_breadcrumb')) {
-	function mervin_breadcrumb($prefix = '', $suffix = '', $display = true) {
+if (!function_exists('get_mervin_breadcrumbs')) {
+	function get_mervin_breadcrumbs($prefix = '', $suffix = '', $display = true) {
 		$zeo_bc = new ZEO_Breadcrumbs();
 		return $zeo_bc->breadcrumb($prefix, $suffix, $display);
 	}	

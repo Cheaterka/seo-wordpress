@@ -34,10 +34,10 @@ require_once ( 'seo-rewritetitle-class.php');
 require_once ( 'seo-authorship.php');
 require_once ( 'seo-authorship-badge.php');
 require_once ( 'seo-authorship-icon.php');
-require_once ( 'seo-xml-sitemap.php');
 require_once ( 'seo-taxonomy.php');
 require_once ( 'seo-breadcrumbs.php');
 require_once ( 'seo-sitemaps.php');
+
 
 // include (SEO_URL.'/seo-wordpress/authorship/seo-authorship.php');
 
