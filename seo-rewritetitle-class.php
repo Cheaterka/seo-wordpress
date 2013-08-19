@@ -13,7 +13,7 @@ class zeo_rewrite_title {
 	$seo_data_class = new seo_data_class();
 	$individual_title = $seo_data_class->zeo_get_post_meta($uid);
 
-    $bloghome = get_settings('home');
+    $bloghome = get_option('home');
     if (substr($bloghome, count($bloghome) - 1, 1) != '/') {
       $pattern = preg_quote($bloghome, '/');
       $content = preg_replace("/$pattern\"/", "$bloghome/\"", $content);
