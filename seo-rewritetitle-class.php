@@ -73,7 +73,7 @@ class zeo_rewrite_title {
     }
     
     if ($title) {
-      $blogname = get_settings('blogname');
+      $blogname = get_option('blogname');
 
       $content = preg_replace("/<title>.*<\/title>/", "<title>$title</title>", $content);
       //$content = preg_replace("/>$blogname</", ">$title - $blogname<", $content);
